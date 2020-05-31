@@ -1,0 +1,15 @@
+{% extends 'base.jinja2' %}
+{% import 'form_macros.jinja2' as mform %}
+
+{% block body %}
+<h1>Satzansicht</h1>
+<p>{{ sentence.text }}</p>
+<form method="post">
+    {% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+    {{ mform.select_input(form.relation_type) }}
+    <button type="submit" class="btn btn-primary">Speichern</button>
+</form>
+{% endblock %}

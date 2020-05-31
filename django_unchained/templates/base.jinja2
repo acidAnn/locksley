@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+{# ===== Head ===== #}
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Annotation</title>
+    <meta name="author" content="Anna Sauer"/>
+    {% block js_extra %}{% endblock %}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ static('libs/bootstrap-4.5.0-dist/css/bootstrap.css') }}">
+    {% block css_extra %}{% endblock %}
+</head>
+
+{# ===== Body ===== #}
+<body>
+<nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="{{ url('workbench') }}">
+        Annotation
+    </a>
+
+    {% if request.user.is_authenticated %}
+        <span class="navbar-text">
+        Hallo <a href="{{ url('workbench') }}?show_user=True">{{ request.user.username }}</a>!
+        <a href="{{ url('logout') }}?next=/">Logout</a>
+    {% else %}
+        <a href="{{ url('login') }}">Login</a>
+    {% endif %}
+    </span>
+</nav>
+
+{% block body %}
+{% endblock %}
+
+
+{% block js_tail %}{% endblock %}
+<script src="{{ static('libs/bootstrap-4.5.0-dist/js/bootstrap.min.js') }}"></script>
+
+</body>
+</html>

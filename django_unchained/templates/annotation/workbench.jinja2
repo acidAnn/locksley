@@ -1,0 +1,10 @@
+{% extends 'base.jinja2' %}
+
+{% block body %}
+<h1>{{ message }}</h1>
+<ul>
+{% for batch in batches %}
+  <li><a href="{{ url('sentence-view', args=[batch.id]) }}">{{ batch.id }}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}
