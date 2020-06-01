@@ -1,10 +1,38 @@
 {% extends 'base.jinja2' %}
 
 {% block body %}
-<h1>{{ message }}</h1>
-<ul>
+<div class="row justify-content-center">
+<div class="col-md-10 col-xl-6"><h1>{{ message }}</h1></div>
+</div>
+
+<div class="row justify-content-between">
+
+<div class="col-6">
+<div class="row justify-content start">
+
+<div class="col-12 col-xl-4">
+Korpus 1
+<ul class="list-group">
 {% for batch in batches %}
-  <li><a href="{{ url('sentence-view', args=[batch.id]) }}">{{ batch.id }}</a></li>
+  <li class="list-group-item"><a href="{{ url('sentence-view', args=[batch.id]) }}">Batch {{ batch.id }}</a></li>
 {% endfor %}
 </ul>
+</div>
+
+<div class="col-12 col-xl-4">
+Korpus 2
+<ul class="list-group mt-5">
+{% for batch in batches %}
+  <li class="list-group-item p-4"><a href="{{ url('sentence-view', args=[batch.id]) }}">Batch {{ batch.id }}</a></li>
+{% endfor %}
+</ul>
+</div>
+</div>
+</div>
+
+<div class="col-4">
+Profil
+</div>
+
+</div>
 {% endblock %}
