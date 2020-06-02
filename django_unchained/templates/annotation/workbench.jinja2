@@ -9,30 +9,21 @@
 <div class="col-md-10 col-xl-6"><h1>{{ message }}</h1></div>
 </div>
 
-<div class="row justify-content-between">
+<div class="row justify-content-center">
 
 <div class="col-6">
 <div class="row justify-content start">
 
+{% for corpus in corpora %}
 <div class="col-12 col-xl-4">
-Korpus 1
+<h3>Korpus {{ corpus }}</h3>
 <ul class="list-group">
-{% for batch in batches %}
-  <li class="list-group-item"><a href="{{ url('sentence-view', args=[batch.id]) }}">Batch {{ batch.id }}</a></li>
+{% for batch in batches.filter(corpus=corpus) %}
+  <li class="list-group-item"><a href="{{ url('sentence-view', args=[batch.id]) }}">Datenpaket {{ batch.id }}</a></li>
 {% endfor %}
 </ul>
 </div>
-
-<div class="col-12 col-xl-4">
-Korpus 2
-<ul class="list-group mt-5">
-{% for batch in batches %}
-  <li class="list-group-item p-4"><a href="{{ url('sentence-view', args=[batch.id]) }}">Batch {{ batch.id }}</a></li>
 {% endfor %}
-</ul>
-</div>
-</div>
-</div>
 
 <div class="col-4">
 Profil

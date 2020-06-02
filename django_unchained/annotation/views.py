@@ -3,13 +3,14 @@ from django.db import IntegrityError
 from django.shortcuts import render, redirect
 
 from .forms import LabelForm
-from .models import Sentence, Batch, Membership
+from .models import Sentence, Batch, Membership, Corpus
 
 
 @login_required
 def workbench(request):
+    corpora = Corpus.objects.all()
     all_batches = Batch.objects.filter(assignee=request.user)
-    return render(request, "annotation/workbench.jinja2", {"batches": all_batches, "message": "Willkommen in der Werkbank"})
+    return render(request, "annotation/workbench.jinja2", {"batches": all_batches, "corpora": corpora, "message": "Willkommen in der Werkbank"})
 
 
 @login_required
