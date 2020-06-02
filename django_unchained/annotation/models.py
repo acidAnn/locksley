@@ -8,17 +8,21 @@ class User(AbstractUser):
 
 class Corpus(models.Model):
     title = models.CharField(max_length=500, unique=True)
+    tag_line = models.CharField(max_length=500, unique=True)
+    description = models.CharField(max_length=10000, unique=True)
 
     def __str__(self):
-        return f'{self.title}'
+        return f"{self.title}"
 
 
 class RelationType(models.Model):
     name = models.CharField(max_length=500, unique=True)
+    description = models.CharField(max_length=1000, unique=True)
+    example = models.CharField(max_length=1000, unique=True)
     corpus = models.ForeignKey(Corpus, null=False, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.name}'
+        return f"{self.name}"
 
 
 class Entity(models.Model):
@@ -26,7 +30,7 @@ class Entity(models.Model):
     # TODO: entity type?
 
     def __str__(self):
-        return f'{self.name}'
+        return f"{self.name}"
 
 
 class Sentence(models.Model):
@@ -35,19 +39,21 @@ class Sentence(models.Model):
     entities = models.ManyToManyField(Entity)
 
     def __str__(self):
-        return f'{self.id} - {self.text}'
+        return f"{self.id} - {self.text}"
 
 
 class Batch(models.Model):
-    sentences = models.ManyToManyField(Sentence,
-                                       through="Membership",
-                                       through_fields=('batch', 'sentence'),
-                                       )
-    corpus = models.ForeignKey(Corpus, default='', null=True, on_delete=models.SET_NULL)
+    sentences = models.ManyToManyField(
+        Sentence, through="Membership", through_fields=("batch", "sentence"),
+    )
+    corpus = models.ForeignKey(Corpus, default="", null=True, on_delete=models.SET_NULL)
     assignee = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    number_of_sentences = models.IntegerField(default=0)
+    number_of_labeled_sentences = models.IntegerField(default=0)
+    percentage_labeled = models.IntegerField(default=0)
 
     def __str__(self):
-        return f'{self.id} - {self.assignee.username}'
+        return f"{self.id} - {self.corpus.title} - {self.assignee.username}"
 
 
 class Membership(models.Model):
@@ -55,14 +61,22 @@ class Membership(models.Model):
     batch = models.ForeignKey(Batch, on_delete=models.CASCADE)
     labeled = models.BooleanField(default=False)
 
+    def __str__(self):
+        return f"{self.sentence.text} - Batch {self.batch.id}"
+
 
 class Label(models.Model):
     sentence = models.ForeignKey(Sentence, null=False, on_delete=models.CASCADE)
-    subject = models.ForeignKey(Entity, null=True, on_delete=models.SET_NULL, related_name="subject")
-    object = models.ForeignKey(Entity, null=True, on_delete=models.SET_NULL, related_name="object")
+    subject = models.ForeignKey(
+        Entity, null=True, on_delete=models.SET_NULL, related_name="subject"
+    )
+    object = models.ForeignKey(
+        Entity, null=True, on_delete=models.SET_NULL, related_name="object"
+    )
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
-    relation_type = models.ForeignKey(RelationType, null=False, on_delete=models.PROTECT)
+    relation_type = models.ForeignKey(
+        RelationType, null=False, on_delete=models.PROTECT
+    )
 
     class Meta:
         unique_together = [["sentence", "user"]]
-

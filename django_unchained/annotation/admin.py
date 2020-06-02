@@ -1,6 +1,15 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import Corpus, RelationType, Sentence, Batch, User, Label, Entity, Membership
+from .models import (
+    Corpus,
+    RelationType,
+    Sentence,
+    Batch,
+    User,
+    Label,
+    Entity,
+    Membership,
+)
 
 admin.site.register(Corpus)
 admin.site.register(RelationType)
