@@ -7,17 +7,30 @@
 
 <div class="row">
 <div class="col-md-8 col-xl-5"><h2>Herkunft und Textart</h2>
-<p>Nun, es war einmal ...</p>
+<p>{{ corpus.description }}</p>
 </div>
 
-<div class="row">
-<div class="col-md-8 col-xl-5"><h2>Relationstypen</h2>
+<div class="row justify-content-between">
+<div class="col-12 col-md-10 col-xl-8"><h2>Relationstypen</h2>
 {% if relation_types %}
-<ul>
+<table class="table">
+<thead class="thead-light">
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Beschreibung</th>
+    <th scope="col">Beispiel</th>
+  <tr>
+<thead>
+<tbody>
 {% for relation_type in relation_types %}
-<li>{{ relation_type.name }}</li>
+<tr>
+  <th scope="row">{{ relation_type.name }}</th>
+  <th>{{ relation_type.description }}</th>
+  <th>{{ relation_type.example }}</th>
+</tr>
 {% endfor %}
-</ul>
+</tbody>
+</table>
 {% endif %}
 </div>
 
