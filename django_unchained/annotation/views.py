@@ -17,8 +17,10 @@ def workbench(request):
 def sentence_view(request, batch_id):
     batch = Batch.objects.get(id=batch_id)
     sentence = batch.sentences.all()[0]
+    if request.method == "GET":
+        form = LabelForm(sentence=sentence)
 
-    if request.method == 'POST':
+    elif request.method == 'POST':
         form = LabelForm(request.POST)
 
         if form.is_valid():
@@ -33,6 +35,6 @@ def sentence_view(request, batch_id):
                 return render(request, "annotation/sentence_view.jinja2", {"error": "Shit happens.", "sentence": sentence, "form": form})
 
     else:
-        form = LabelForm()
+        form = LabelForm(sentence=sentence)
 
     return render(request, "annotation/sentence_view.jinja2", {"sentence": sentence, "form": form})
