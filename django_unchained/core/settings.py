@@ -119,7 +119,7 @@ PASSWORD_RESET_TIMEOUT_DAYS = 3
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'de'
 
 TIME_ZONE = 'UTC'
 
