@@ -39,12 +39,11 @@ class Sentence(models.Model):
 
 
 class Batch(models.Model):
-    # TODO: add sth like a batch label
     sentences = models.ManyToManyField(Sentence,
                                        through="Membership",
                                        through_fields=('batch', 'sentence'),
                                        )
-    corpus = models.ForeignKey(Corpus, null=True, on_delete=models.SET_NULL)
+    corpus = models.ForeignKey(Corpus, default='', null=True, on_delete=models.SET_NULL)
     assignee = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):

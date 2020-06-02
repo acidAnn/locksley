@@ -1,6 +1,10 @@
 {% extends 'base.jinja2' %}
 
 {% block body %}
+{% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+{% endif %}
+
 <div class="row justify-content-center">
 <div class="col-md-10 col-xl-6"><h1>{{ message }}</h1></div>
 </div>

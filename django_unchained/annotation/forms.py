@@ -10,8 +10,6 @@ class LabelForm(ModelForm):
         queryset = RelationType.objects.all()
         if sentence:
             queryset = queryset.filter(corpus=sentence.corpus)
-            print("OBACHT", sentence.corpus)
-            print(queryset.all())
 
         self.fields['relation_type'] = ModelChoiceField(queryset=queryset, empty_label=None,
                                      to_field_name="name")

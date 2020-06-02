@@ -4,6 +4,8 @@
 {% block body %}
 <h1>Satzansicht</h1>
 <p>{{ sentence.text }}</p>
+{% for entity in entities %}
+{% endfor %}
 <form method="post">
     {% if error %}
     <div class="alert alert-danger">{{ error }}</div>
