@@ -43,9 +43,9 @@ def sentence_view(request, batch_id):
 
                 except IntegrityError as ie:
                     print(ie)
-                    return render(request, "annotation/sentence_view.jinja2", {"error": "Shit happens.", "sentence": sentence, "entities": sentence.entities, "form": form})
+                    return render(request, "annotation/sentence_view.jinja2", {"error": "Shit happens.", "sentence": sentence, "entities": sentence.entities.all(), "form": form})
 
         else:
             form = LabelForm(sentence=sentence)
 
-        return render(request, "annotation/sentence_view.jinja2", {"sentence": sentence, "form": form})
+        return render(request, "annotation/sentence_view.jinja2", {"sentence": sentence, "entities": sentence.entities.all(), "form": form})

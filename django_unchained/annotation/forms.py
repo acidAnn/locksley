@@ -7,12 +7,14 @@ class LabelForm(ModelForm):
         sentence = kwargs.pop('sentence', None)
         super(LabelForm, self).__init__(*args, **kwargs)
 
-        queryset = RelationType.objects.all()
+        relation_types = RelationType.objects.all()
         if sentence:
-            queryset = queryset.filter(corpus=sentence.corpus)
+            relation_types = relation_types.filter(corpus=sentence.corpus)
+            entities = sentence.entities.all()
 
-        self.fields['relation_type'] = ModelChoiceField(queryset=queryset, empty_label=None,
-                                     to_field_name="name")
+        self.fields['subject'] = ModelChoiceField(queryset=entities, empty_label=None, to_field_name="name")
+        self.fields['object'] = ModelChoiceField(queryset=entities, empty_label=None, to_field_name="name")
+        self.fields['relation_type'] = ModelChoiceField(queryset=relation_types, empty_label=None, to_field_name="name")
 
     class Meta:
         model = Label

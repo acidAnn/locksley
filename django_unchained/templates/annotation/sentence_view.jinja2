@@ -4,13 +4,21 @@
 {% block body %}
 <h1>Satzansicht</h1>
 <p>{{ sentence.text }}</p>
+{% if entities %}
+<ul>
 {% for entity in entities %}
+<li>{{ entity }}</li>
 {% endfor %}
+</ul>
+{% endif %}
+
 <form method="post">
     {% if error %}
     <div class="alert alert-danger">{{ error }}</div>
     {% endif %}
     <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+    {{ mform.select_input(form.subject) }}
+    {{ mform.select_input(form.object) }}
     {{ mform.select_input(form.relation_type) }}
     <button type="submit" class="btn btn-primary">Speichern</button>
 </form>
