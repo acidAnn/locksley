@@ -20,12 +20,12 @@
 <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" href="{{ url('workbench') }}">
         <img src="{{ static('images/favicon-32x32.png') }}" width="32" height="32" class="d-inline-block align-top" alt="">
-        Annotation
+        Locksley
     </a>
 
     {% if request.user.is_authenticated %}
         <span class="navbar-text">
-        Hallo <a href="{{ url('workbench') }}?show_user=True">{{ request.user.username }}</a>!
+        <a href="{{ url('workbench') }}?show_user=True">{{ request.user.username }}</a>
         <a href="{{ url('logout') }}?next=/">Logout</a>
     {% else %}
         <a href="{{ url('login') }}">Login</a>

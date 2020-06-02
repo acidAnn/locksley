@@ -10,6 +10,12 @@
 </div>
 
 <div class="row justify-content-center">
+<div class="col-12 col-xl-6">
+<p>Hier geht es zu den <a href="{{ url('instructions') }}">Annotationsrichtlinien</a>.</p>
+</div>
+</div>
+
+<div class="row justify-content-center">
 
 <div class="col-6">
 <div class="row justify-content start">
@@ -17,6 +23,7 @@
 {% for corpus in corpora %}
 <div class="col-12 col-xl-4">
 <h3>Korpus {{ corpus }}</h3>
+<p><a href="{{ url('corpus-instructions', args=[corpus.id]) }}">Richtlinien</a></p>
 <ul class="list-group">
 {% for batch in batches.filter(corpus=corpus) %}
   <li class="list-group-item"><a href="{{ url('sentence-view', args=[batch.id]) }}">Datenpaket {{ batch.id }}</a></li>
