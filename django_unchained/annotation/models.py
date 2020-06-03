@@ -81,6 +81,3 @@ class Label(models.Model):
     )
     # TODO: add Gold attribute
 
-    class Meta:
-        # TODO: remove?
-        unique_together = [["sentence", "user",]]

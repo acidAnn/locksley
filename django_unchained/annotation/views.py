@@ -60,13 +60,21 @@ def sentence_view(request, batch_id):
 
         if request.method == "POST":
             formset = LabelFormSet(request.POST)
-            print(formset)
+            for form in formset:
+                print(form)
 
             if formset.is_valid():
                 for form in formset:
                     if form.is_valid():
-                        try:
-                            label = form.save(commit=False)
+                        label = form.save(commit=False)
+                        print(label.subject)
+                        print(label.object)
+
+                        if not label.subject and not label.object:
+                            print("no label necessary")
+                            continue
+
+                        else:
                             label.user = request.user
                             label.sentence = sentence
                             label.save()
@@ -81,23 +89,10 @@ def sentence_view(request, batch_id):
                             ) / batch.number_of_sentences
                             batch.save()
 
-                            return redirect("sentence-view", batch_id=batch_id)
-
-                        except IntegrityError as ie:
-                            return render(
-                                request,
-                                "annotation/sentence_view.jinja2",
-                                {
-                                    "error": "Shit happens.",
-                                    "sentence": sentence,
-                                    "entities": sentence.entities.all(),
-                                    "relation_types": RelationType.objects.filter(corpus=sentence.corpus),
-                                    "formset": formset,
-                                },
-                            )
-
                     else:
                         print("INVALID FORM")
+
+                return redirect("sentence-view", batch_id=batch_id)
             else:
                 print("INVALID FORM")
 
