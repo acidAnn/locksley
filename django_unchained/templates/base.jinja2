@@ -13,6 +13,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{ static('libs/bootstrap-4.5.0-dist/css/bootstrap.css') }}">
     {% block css_extra %}{% endblock %}
+    <script src="{{ static('libs/jquery-3.5.1.min.js') }}"></script>
+    <script src="{{ static('js/main.js') }}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 </head>
 
 {# ===== Body ===== #}
@@ -38,8 +41,7 @@
 {% endblock %}
 </div>
 
-{% block js_tail %}{% endblock %}
 <script src="{{ static('libs/bootstrap-4.5.0-dist/js/bootstrap.min.js') }}"></script>
-
+{% block js_tail %}{% endblock %}
 </body>
 </html>

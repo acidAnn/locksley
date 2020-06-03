@@ -1,0 +1,10 @@
+{% extends 'base.jinja2' %}
+
+{% block body %}
+<div class="row justify-content-center">
+<div class="col-12 col-xl-6"><h1>Datenpaket {{ batch_id }} erfolgreich abgeschlossen!</h1>
+<p>Vielen Dank, {{ request.user }}, das ist großartig!</p>
+<img src="{{ static('images/archer_down.png') }}" alt="Volltreffer!">
+</div>
+</div>
+{% endblock %}

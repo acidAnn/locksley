@@ -38,8 +38,86 @@ def corpus_instructions(request, corpus_id):
 
 
 @login_required
+def completed(request, batch_id):
+    return render(
+        request,
+        "annotation/completed.jinja2",
+        {"batch_id": batch_id}
+    )
+
+
+@login_required
 def sentence_view(request, batch_id):
     batch = Batch.objects.get(id=batch_id)
+    unlabeled_members = Membership.objects.filter(batch=batch, labeled=False)
+
+    if not unlabeled_members:
+        return redirect("completed", batch_id=batch_id)
+
+    else:
+        first_unlabeled_member = unlabeled_members[0]
+        sentence = Sentence.objects.get(id=first_unlabeled_member.sentence.id)
+
+        if request.method == "POST":
+            formset = LabelFormSet(request.POST)
+            print(formset)
+
+            if formset.is_valid():
+                for form in formset:
+                    if form.is_valid():
+                        try:
+                            label = form.save(commit=False)
+                            label.user = request.user
+                            label.sentence = sentence
+                            label.save()
+
+                            membership = Membership.objects.get(sentence=sentence, batch=batch)
+                            membership.labeled = True
+                            membership.save()
+
+                            batch.number_of_labeled_sentences += 1
+                            batch.percentage_labeled = (
+                                batch.number_of_labeled_sentences * 100
+                            ) / batch.number_of_sentences
+                            batch.save()
+
+                            return redirect("sentence-view", batch_id=batch_id)
+
+                        except IntegrityError as ie:
+                            return render(
+                                request,
+                                "annotation/sentence_view.jinja2",
+                                {
+                                    "error": "Shit happens.",
+                                    "sentence": sentence,
+                                    "entities": sentence.entities.all(),
+                                    "relation_types": RelationType.objects.filter(corpus=sentence.corpus),
+                                    "formset": formset,
+                                },
+                            )
+
+                    else:
+                        print("INVALID FORM")
+            else:
+                print("INVALID FORM")
+
+        else:
+            formset = LabelFormSet(form_kwargs={"sentence": sentence})
+
+        return render(
+            request,
+            "annotation/sentence_view.jinja2",
+            {
+                "sentence": sentence,
+                "entities": sentence.entities.all(),
+                "relation_types": RelationType.objects.filter(corpus=sentence.corpus),
+                "formset": formset},
+        )
+
+
+@login_required
+def home(request):
+    batch = Batch.objects.get(id=4)
     unlabeled_members = Membership.objects.filter(batch=batch, labeled=False)
 
     if not unlabeled_members:
@@ -72,18 +150,18 @@ def sentence_view(request, batch_id):
                     ) / batch.number_of_sentences
                     batch.save()
 
-                    return redirect("sentence-view", batch_id=batch_id)
+                    return redirect("sentence-view", batch_id=4)
 
                 except IntegrityError as ie:
                     print(ie)
                     return render(
                         request,
-                        "annotation/sentence_view.jinja2",
+                        "annotation/home.jinja2",
                         {
                             "error": "Shit happens.",
                             "sentence": sentence,
                             "entities": sentence.entities.all(),
-                            "relation_types": RelationType.objects.filter(corpus=sentence.corpus),
+                            "relation_types": RelationType.objects.all(),
                             "formset": formset,
                         },
                     )
@@ -94,10 +172,11 @@ def sentence_view(request, batch_id):
         print(type(formset), len(formset))
         return render(
             request,
-            "annotation/sentence_view.jinja2",
+            "annotation/home.jinja2",
             {
                 "sentence": sentence,
                 "entities": sentence.entities.all(),
-                "relation_types": RelationType.objects.filter(corpus=sentence.corpus),
+                "relation_types": RelationType.objects.all(),
                 "formset": formset},
         )
+

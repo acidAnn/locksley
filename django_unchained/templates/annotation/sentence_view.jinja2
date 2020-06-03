@@ -1,5 +1,6 @@
 {% extends 'base.jinja2' %}
-{% import 'form_macros.jinja2' as mform %}
+{% import 'macros/form_macros.jinja2' as mform %}
+{% import 'macros/util_macros.jinja2' as mutils %}
 
 {% block body %}
 <h1>Satzansicht</h1>
@@ -13,20 +14,7 @@
 </ul>
 {% endif %}
 
-<form method="post">
-    {% if error %}
-    <div class="alert alert-danger">{{ error }}</div>
-    {% endif %}
-
-    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
-        {{ formset.management_form }}
-        {% for form in formset %}
-        <div class="row">
-            {{ form }}
-        </div>
-        {% endfor %}
-
-    <button type="submit" class="btn btn-primary">Speichern</button>
-</form>
-
+<div class="row mt-2 justify-content-center">
+   {{ mutils.get_label_add_form(formset, csrf_input) }}
+</div>
 {% endblock %}

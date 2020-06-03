@@ -3,6 +3,10 @@ from .models import Label, RelationType, Entity
 
 
 class LabelForm(ModelForm):
+    subject = ModelChoiceField(queryset=Entity.objects.all())
+    object = ModelChoiceField(queryset=Entity.objects.all())
+    relation_type = ModelChoiceField(queryset=RelationType.objects.all())
+
     def __init__(self, *args, **kwargs):
         sentence = kwargs.pop("sentence", None)
         super(LabelForm, self).__init__(*args, **kwargs)
@@ -13,15 +17,9 @@ class LabelForm(ModelForm):
             relation_types = relation_types.filter(corpus=sentence.corpus)
             entities = sentence.entities.all()
 
-        self.fields["subject"] = ModelChoiceField(
-            queryset=entities, empty_label=None, to_field_name="name"
-        )
-        self.fields["object"] = ModelChoiceField(
-            queryset=entities, empty_label=None, to_field_name="name"
-        )
-        self.fields["relation_type"] = ModelChoiceField(
-            queryset=relation_types, empty_label=None, to_field_name="name"
-        )
+        self.fields["subject"].queryset = entities
+        self.fields["object"].queryset = entities
+        self.fields["relation_type"].queryset = relation_types
 
     class Meta:
         model = Label
@@ -30,5 +28,5 @@ class LabelForm(ModelForm):
 
 LabelFormSet = formset_factory(
     LabelForm,
-    extra=2
+    extra=1
 )

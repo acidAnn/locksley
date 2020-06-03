@@ -1,0 +1,24 @@
+{% macro get_label_add_form(formset, csrf_input) -%}
+    <form id="label-form" method="POST">
+        {{ formset.management_form }}
+        {{ csrf_input }}
+
+        {% for form in formset %}
+            <div class="labeling form-row mb-1">
+                {% for field in form %}
+                    {{ field }}
+                 {% endfor %}
+                <input type="hidden" name="form-0-id" id="id_form-0-id" class=""/>
+                <button title="Weiteres Label hinzufügen"
+                        class="col-2 col-sm-1 btn btn-success btn-block rounded-0 add-form-row">
+                    <i class="fas fa-plus" style="font-size: 1.25rem; vertical-align: middle"></i>
+                </button>
+            </div>
+        {% endfor %}
+            <div class="submit-btn-formset col-12 col-md-7 p-0">
+                <input class="btn btn-outline-primary btn-block rounded-0"
+                       type="submit" value="Speichern"/>
+            </div>
+        </div>
+    </form>
+{% endmacro %}

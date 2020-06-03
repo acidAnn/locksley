@@ -67,9 +67,11 @@ class Membership(models.Model):
 
 class Label(models.Model):
     sentence = models.ForeignKey(Sentence, null=False, on_delete=models.CASCADE)
+    # set to default
     subject = models.ForeignKey(
         Entity, null=True, on_delete=models.SET_NULL, related_name="subject"
     )
+    # set to default
     object = models.ForeignKey(
         Entity, null=True, on_delete=models.SET_NULL, related_name="object"
     )
@@ -77,6 +79,8 @@ class Label(models.Model):
     relation_type = models.ForeignKey(
         RelationType, null=False, on_delete=models.PROTECT
     )
+    # TODO: add Gold attribute
 
     class Meta:
-        unique_together = [["sentence", "user"]]
+        # TODO: remove?
+        unique_together = [["sentence", "user",]]
