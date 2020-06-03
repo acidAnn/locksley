@@ -66,19 +66,18 @@ def sentence_view(request, batch_id):
             if formset.is_valid():
                 for form in formset:
                     if form.is_valid():
-                        label = form.save(commit=False)
-                        print(label.subject)
-                        print(label.object)
+                        print("is valid")
 
-                        if not label.subject and not label.object:
-                            print("no label necessary")
-                            continue
-
-                        else:
+                        try:
+                            label = form.save(commit=False)
                             label.user = request.user
                             label.sentence = sentence
                             label.save()
 
+                        except IntegrityError:
+                            print("integrity error")
+
+                        finally:
                             membership = Membership.objects.get(sentence=sentence, batch=batch)
                             membership.labeled = True
                             membership.save()

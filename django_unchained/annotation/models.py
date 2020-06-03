@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    pass
+    wish = models.CharField(max_length=1000, default="", unique=False)
 
 
 class Corpus(models.Model):
@@ -69,15 +69,14 @@ class Label(models.Model):
     sentence = models.ForeignKey(Sentence, null=False, on_delete=models.CASCADE)
     # set to default
     subject = models.ForeignKey(
-        Entity, null=True, on_delete=models.SET_NULL, related_name="subject"
+        Entity, null=False, on_delete=models.PROTECT, related_name="subject"
     )
     # set to default
     object = models.ForeignKey(
-        Entity, null=True, on_delete=models.SET_NULL, related_name="object"
+        Entity, null=False, on_delete=models.PROTECT, related_name="object"
     )
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     relation_type = models.ForeignKey(
         RelationType, null=False, on_delete=models.PROTECT
     )
-    # TODO: add Gold attribute
-
+    is_gold_label = models.BooleanField(default=False)
