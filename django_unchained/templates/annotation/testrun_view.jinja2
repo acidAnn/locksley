@@ -10,10 +10,9 @@
 <p><a href="{{ url('corpus-instructions', args=[sentence.corpus.id]) }}">Link zu Korpus-Richtlinien</a></p>
 </class>
 <class="col-10">
-<p>Datenpaket: {{ batch.id }}</p>
-<p>{{ batch.number_of_labeled_sentences+1 }}/{{ batch.number_of_sentences }}</p>
+<p>Trainingsansicht {{ testrun.id }}</p>
 </class>
-</class>
+<p>Irgendwas über Trainingsansicht</p>
 
 <class="row">
 <class="col-10">
@@ -32,4 +31,18 @@
 <div class="row mt-2 justify-content-center">
    {{ mutils.get_label_add_form(formset, csrf_input) }}
 </div>
+
+<div class="row" id="goldlabel-display" style="display:none">
+<div class="col-6">
+{{ goldlabel.goldrelation_type }}
+</div>
+</div>
+
+<button type="button" onclick="show('goldlabel-display');">Aufdecken</button>
+
+<script type="text/javascript">
+function show(elementId) {
+ document.getElementById(elementId).style.display="block";
+}
+</script>
 {% endblock %}

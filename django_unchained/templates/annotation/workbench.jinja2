@@ -22,7 +22,8 @@
 {% for corpus in corpora %}
 <div class="col-12 col-xl-4">
 <h3>Korpus {{ corpus }}</h3>
-<p><a href="{{ url('corpus-instructions', args=[corpus.id]) }}">Richtlinien</a></p>
+<p><a href="{{ url('corpus-instructions', args=[corpus.id]) }}">Korpusleitfaden</a></p>
+<a href="{{ url('testrun-view', args=[testruns.filter(corpus=corpus)[0].id, 0]) }}">Trainingsdurchlauf</a>
 <ul class="list-group">
 {% for batch in batches.filter(corpus=corpus) %}
   <li class="list-group-item">

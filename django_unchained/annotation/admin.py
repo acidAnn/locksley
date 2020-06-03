@@ -9,6 +9,9 @@ from .models import (
     Label,
     Entity,
     Membership,
+    TestRun,
+    ExampleSentence,
+    GoldLabel
 )
 
 admin.site.register(Corpus)
@@ -18,4 +21,7 @@ admin.site.register(Batch)
 admin.site.register(Label)
 admin.site.register(Entity)
 admin.site.register(Membership)
+admin.site.register(TestRun)
+admin.site.register(ExampleSentence)
+admin.site.register(GoldLabel)
 admin.site.register(User, UserAdmin)

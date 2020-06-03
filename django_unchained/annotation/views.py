@@ -3,7 +3,7 @@ from django.db import IntegrityError
 from django.shortcuts import render, redirect
 
 from .forms import LabelForm, LabelFormSet
-from .models import Sentence, Batch, Membership, Corpus, RelationType
+from .models import Sentence, Batch, Membership, Corpus, RelationType, TestRun, ExampleSentence, GoldLabel
 
 
 @login_required
@@ -16,7 +16,8 @@ def workbench(request):
         {
             "batches": all_batches,
             "corpora": corpora,
-            "message": "Willkommen in der Werkbank",
+            "testruns": TestRun.objects.all(),
+            "message": "Werkbank",
         },
     )
 
@@ -43,6 +44,14 @@ def completed(request, batch_id):
         request,
         "annotation/completed.jinja2",
         {"batch_id": batch_id}
+    )
+
+
+@login_required
+def testrun_completed(request):
+    return render(
+        request,
+        "annotation/testrun_completed.jinja2",
     )
 
 
@@ -103,6 +112,7 @@ def sentence_view(request, batch_id):
             "annotation/sentence_view.jinja2",
             {
                 "sentence": sentence,
+                "batch": batch,
                 "entities": sentence.entities.all(),
                 "relation_types": RelationType.objects.filter(corpus=sentence.corpus),
                 "formset": formset},
@@ -110,67 +120,39 @@ def sentence_view(request, batch_id):
 
 
 @login_required
-def home(request):
-    batch = Batch.objects.get(id=4)
-    unlabeled_members = Membership.objects.filter(batch=batch, labeled=False)
+def testrun_view(request, testrun_id, iterator):
+    testrun = TestRun.objects.get(id=testrun_id)
+    print(testrun.number_of_example_sentences)
+    print(iterator)
 
-    if not unlabeled_members:
-        # TODO: alert error - already done
-        return redirect("workbench")
+    if iterator >= testrun.number_of_example_sentences:
+        return redirect("testrun-completed")
 
     else:
-        first_unlabeled_member = unlabeled_members[0]
-        sentence = Sentence.objects.get(id=first_unlabeled_member.sentence.id)
+        example_sentence = ExampleSentence.objects.filter(testrun=testrun_id)[iterator]
+        goldlabels = GoldLabel.objects.filter(example_sentence=example_sentence)
+        if goldlabels:
+            goldlabel = goldlabels[0]
+        else:
+            # TODO: error
+            goldlabel = GoldLabel.objects.all()[0]
+
+        iterator += 1
 
         if request.method == "POST":
-            formset = LabelFormSet(request.POST)
-
-            if formset.is_valid():
-                try:
-                    labels = formset.save(commit=False)
-
-                    for label in labels:
-                        label.user = request.user
-                        label.sentence = sentence
-                        label.save()
-
-                    membership = Membership.objects.get(sentence=sentence, batch=batch)
-                    membership.labeled = True
-                    membership.save()
-
-                    batch.number_of_labeled_sentences += 1
-                    batch.percentage_labeled = (
-                        batch.number_of_labeled_sentences * 100
-                    ) / batch.number_of_sentences
-                    batch.save()
-
-                    return redirect("sentence-view", batch_id=4)
-
-                except IntegrityError as ie:
-                    print(ie)
-                    return render(
-                        request,
-                        "annotation/home.jinja2",
-                        {
-                            "error": "Shit happens.",
-                            "sentence": sentence,
-                            "entities": sentence.entities.all(),
-                            "relation_types": RelationType.objects.all(),
-                            "formset": formset,
-                        },
-                    )
-
+                return redirect("testrun-view", testrun_id=testrun_id, iterator=iterator)
         else:
-            formset = LabelFormSet(form_kwargs={"sentence": sentence})
+            formset = LabelFormSet(form_kwargs={"sentence": example_sentence})
 
-        print(type(formset), len(formset))
         return render(
             request,
-            "annotation/home.jinja2",
+            "annotation/testrun_view.jinja2",
             {
-                "sentence": sentence,
-                "entities": sentence.entities.all(),
-                "relation_types": RelationType.objects.all(),
-                "formset": formset},
+                "sentence": example_sentence,
+                "testrun": testrun,
+                "entities": example_sentence.entities.all(),
+                "formset": formset,
+                "goldlabel": goldlabel
+            },
         )
 

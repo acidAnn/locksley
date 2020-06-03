@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class User(AbstractUser):
-    wish = models.CharField(max_length=1000, default="", unique=False)
+    pass
 
 
 class Corpus(models.Model):
@@ -46,7 +46,7 @@ class Batch(models.Model):
     sentences = models.ManyToManyField(
         Sentence, through="Membership", through_fields=("batch", "sentence"),
     )
-    corpus = models.ForeignKey(Corpus, default="", null=True, on_delete=models.SET_NULL)
+    corpus = models.ForeignKey(Corpus, null=True, on_delete=models.SET_NULL)
     assignee = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     number_of_sentences = models.IntegerField(default=0)
     number_of_labeled_sentences = models.IntegerField(default=0)
@@ -67,16 +67,52 @@ class Membership(models.Model):
 
 class Label(models.Model):
     sentence = models.ForeignKey(Sentence, null=False, on_delete=models.CASCADE)
-    # set to default
     subject = models.ForeignKey(
-        Entity, null=False, on_delete=models.PROTECT, related_name="subject"
+        Entity, null=True, on_delete=models.PROTECT, related_name="subject"
     )
-    # set to default
     object = models.ForeignKey(
-        Entity, null=False, on_delete=models.PROTECT, related_name="object"
+        Entity, null=True, on_delete=models.PROTECT, related_name="object"
     )
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     relation_type = models.ForeignKey(
-        RelationType, null=False, on_delete=models.PROTECT
+        RelationType, null=True, on_delete=models.PROTECT
     )
-    is_gold_label = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.id} - {self.sentence}"
+#        return f"Subjekt: {self.subject.name} - Objekt: {self.object.name} - Relationstyp: {self.relation_type.name}"
+
+
+class TestRun(models.Model):
+    corpus = models.ForeignKey(Corpus, null=True, on_delete=models.SET_NULL)
+    number_of_example_sentences = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.id} - {self.corpus.tag_line}"
+
+
+class ExampleSentence(models.Model):
+    text = models.CharField(max_length=500, unique=True)
+    entities = models.ManyToManyField(Entity)
+    testrun = models.ForeignKey(TestRun, null=True, on_delete=models.SET_NULL)
+    corpus = models.ForeignKey(Corpus, null=True, on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return f"{self.id} - {self.text}"
+
+
+class GoldLabel(models.Model):
+    example_sentence = models.ForeignKey(ExampleSentence, null=False, on_delete=models.CASCADE)
+    goldsubject = models.ForeignKey(
+        Entity, null=True, on_delete=models.PROTECT, related_name="goldsubject"
+    )
+    goldobject = models.ForeignKey(
+        Entity, null=True, on_delete=models.PROTECT, related_name="goldobject"
+    )
+    goldrelation_type = models.ForeignKey(
+        RelationType, null=True, on_delete=models.PROTECT
+    )
+
+    def __str__(self):
+        return f"{self.example_sentence.text}"
+
