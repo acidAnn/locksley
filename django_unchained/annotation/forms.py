@@ -1,4 +1,4 @@
-from django.forms import ModelForm, ModelChoiceField
+from django.forms import ModelForm, ModelChoiceField, formset_factory
 from .models import Label, RelationType, Entity
 
 
@@ -25,4 +25,10 @@ class LabelForm(ModelForm):
 
     class Meta:
         model = Label
-        fields = ["relation_type"]
+        fields = ["subject", "object", "relation_type"]
+
+
+LabelFormSet = formset_factory(
+    LabelForm,
+    extra=2
+)

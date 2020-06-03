@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.shortcuts import render, redirect
 
-from .forms import LabelForm
+from .forms import LabelForm, LabelFormSet
 from .models import Sentence, Batch, Membership, Corpus, RelationType
 
 
@@ -51,14 +51,16 @@ def sentence_view(request, batch_id):
         sentence = Sentence.objects.get(id=first_unlabeled_member.sentence.id)
 
         if request.method == "POST":
-            form = LabelForm(request.POST)
+            formset = LabelFormSet(request.POST)
 
-            if form.is_valid():
+            if formset.is_valid():
                 try:
-                    label = form.save(commit=False)
-                    label.user = request.user
-                    label.sentence = sentence
-                    label.save()
+                    labels = formset.save(commit=False)
+
+                    for label in labels:
+                        label.user = request.user
+                        label.sentence = sentence
+                        label.save()
 
                     membership = Membership.objects.get(sentence=sentence, batch=batch)
                     membership.labeled = True
@@ -81,15 +83,21 @@ def sentence_view(request, batch_id):
                             "error": "Shit happens.",
                             "sentence": sentence,
                             "entities": sentence.entities.all(),
-                            "form": form,
+                            "relation_types": RelationType.objects.filter(corpus=sentence.corpus),
+                            "formset": formset,
                         },
                     )
 
         else:
-            form = LabelForm(sentence=sentence)
+            formset = LabelFormSet(form_kwargs={"sentence": sentence})
 
+        print(type(formset), len(formset))
         return render(
             request,
             "annotation/sentence_view.jinja2",
-            {"sentence": sentence, "entities": sentence.entities.all(), "form": form},
+            {
+                "sentence": sentence,
+                "entities": sentence.entities.all(),
+                "relation_types": RelationType.objects.filter(corpus=sentence.corpus),
+                "formset": formset},
         )
