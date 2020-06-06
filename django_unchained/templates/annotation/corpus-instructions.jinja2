@@ -2,37 +2,41 @@
 
 {% block body %}
 <div class="row justify-content-center">
-  <div class="col-md-10 col-xl-6"><h1>Annotationsleitfaden für {{ corpus.title }}</h1></div>
-</div>
-
-<div class="row">
-  <div class="col-md-8 col-xl-5"><h2>Herkunft und Textart</h2>
-    <p>{{ corpus.description }}</p>
+  <div class="col-12 col-md-10 col-xl-6 text-center pt-3">
+    <h1>Annotationsleitfaden für {{ corpus.title }}</h1>
   </div>
 </div>
 
-<div class="row justify-content-between">
-  <div class="col-12 col-md-10 col-xl-8"><h2>Relationstypen</h2>
-    {% if relation_types %}
-    <table class="table">
-      <thead class="thead-light">
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Beschreibung</th>
-          <th scope="col">Beispiel</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for relation_type in relation_types %}
-          <tr>
-            <th scope="row">{{ relation_type.name }}</th>
-            <th>{{ relation_type.description }}</th>
-            <th>{{ relation_type.example }}</th>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      {% endif %}
+<div class="row justify-content-center">
+    <div class="col-sm-12 col-md-10 col-xl-6 pt-2">
+        <h2>Beschreibung</h2>
+            <p>{{ corpus.description }}</p>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-sm-12 col-md-10 col-xl-6 pt-2">
+        <h2>Relationstypen</h2>
+        {% if relation_types %}
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Beschreibung</th>
+              <th scope="col">Beispielsätze</th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for relation_type in relation_types %}
+                  <tr>
+                    <th scope="row">{{ relation_type.name }}</th>
+                    <th>{{ relation_type.description }}</th>
+                    <th>{{ relation_type.example }}</th>
+                   </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+        {% endif %}
     </div>
   </div>
 {% endblock %}

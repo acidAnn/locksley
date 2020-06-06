@@ -17,7 +17,6 @@ def workbench(request):
             "batches": all_batches,
             "corpora": corpora,
             "testruns": TestRun.objects.all(),
-            "message": "Werkbank",
         },
     )
 
