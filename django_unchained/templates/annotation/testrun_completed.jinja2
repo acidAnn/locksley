@@ -2,9 +2,10 @@
 
 {% block body %}
 <div class="row justify-content-center">
-<div class="col-12 col-xl-6"><h1>Trainingsdurchlauf erfolgreich abgeschlossen!</h1>
-<p>Wunderbar, {{ request.user }}, jetzt kann es los gehen!</p>
-<img src="{{ static('images/archer_side.png') }}" alt="Volltreffer!" height="50%">
-</div>
+    <div class="col-12 col-xl-6">
+        <h1>Trainingsdurchlauf erfolgreich abgeschlossen!</h1>
+        <p>Wunderbar, {{ request.user }}, jetzt kann es los gehen!</p>
+        <img src="{{ static('images/archer_side.png') }}" alt="Volltreffer!" height="50%">
+    </div>
 </div>
 {% endblock %}

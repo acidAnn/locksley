@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 {# ===== Head ===== #}
-
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -25,23 +24,24 @@
         <img src="{{ static('images/favicon-32x32.png') }}" width="32" height="32" class="d-inline-block align-top" alt="">
         Locksley
     </a>
-        <span class="navbar-text">
+    <span class="navbar-text">
         <a href="{{ url('instructions') }}">Leitfaden</a>
-    {% if request.user.is_authenticated %}
+        {% if request.user.is_authenticated %}
         <a href="{{ url('workbench') }}?show_user=True">{{ request.user.username }}</a>
         <a href="{{ url('logout') }}?next=/">Logout</a>
-    {% else %}
+        {% else %}
         <a href="{{ url('login') }}">Login</a>
-    {% endif %}
+        {% endif %}
     </span>
 </nav>
 
 <div class="container-fluid">
-{% block body %}
-{% endblock %}
+    {% block body %}
+    {% endblock %}
 </div>
 
 <script src="{{ static('libs/bootstrap-4.5.0-dist/js/bootstrap.min.js') }}"></script>
-{% block js_tail %}{% endblock %}
+{% block js_tail %}
+{% endblock %}
 </body>
 </html>

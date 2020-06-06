@@ -4,32 +4,40 @@
 
 {% block body %}
 <h1>Satzansicht</h1>
-<class="row">
-<class="col-10">
-<p>Korpus: {{ sentence.corpus }}</p>
-<p><a href="{{ url('corpus-instructions', args=[sentence.corpus.id]) }}">Link zu Korpus-Richtlinien</a></p>
-</class>
-<class="col-10">
-<p>Datenpaket: {{ batch.id }}</p>
-<p>{{ batch.number_of_labeled_sentences+1 }}/{{ batch.number_of_sentences }}</p>
-</class>
-</class>
 
-<class="row">
-<class="col-10">
-<p>{{ sentence.text }}</p>
-</class>
-</class>
+<div class="row">
+   <div class="col-10">
+      <p>Korpus: {{ sentence.corpus }}</p>
+      <p><a href="{{ url('corpus-instructions', args=[sentence.corpus.id]) }}">Link zu Korpus-Richtlinien</a></p>
+   </div>
+   <div class="col-10">
+      <p>Datenpaket: {{ batch.id }}</p>
+      <p>{{ batch.number_of_labeled_sentences+1 }}/{{ batch.number_of_sentences }}</p>
+   </div>
+</div>
 
-{% if entities %}
-<ul>
-{% for entity in entities %}
-<li>{{ entity }}</li>
-{% endfor %}
-</ul>
-{% endif %}
+<div class="row">
+   <div class="col-10">
+      <p>{{ sentence.text }}</p>
+   </div>
+</div>
+
+<div class="row">
+    <div class="col-10">
+        {% if entities %}
+       <ul>
+          {% for entity in entities %}
+          <li>{{ entity }}</li>
+          {% endfor %}
+       </ul>
+       {% endif %}
+    </div>
+</div>
+
 
 <div class="row mt-2 justify-content-center">
-   {{ mutils.get_label_add_form(formset, csrf_input) }}
+   <div class="col-10">
+      {{ mutils.get_label_add_form(formset, csrf_input) }}
+   </div>
 </div>
 {% endblock %}

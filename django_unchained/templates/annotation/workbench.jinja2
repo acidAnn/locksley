@@ -1,45 +1,44 @@
 {% extends 'base.jinja2' %}
 {% block body %}
 {% if error %}
-    <div class="alert alert-danger">{{ error }}</div>
+<div class="alert alert-danger">{{ error }}</div>
 {% endif %}
 
 <div class="row justify-content-center">
-<div class="col-md-10 col-xl-6"><h1>{{ message }}</h1></div>
-</div>
-
-<div class="row justify-content-center">
-<div class="col-12 col-xl-6">
-<p>Hier geht es zu den <a href="{{ url('instructions') }}">Annotationsrichtlinien</a>.</p>
-</div>
-</div>
-
-<div class="row justify-content-center">
-
-<div class="col-6">
-<div class="row justify-content start">
-
-{% for corpus in corpora %}
-<div class="col-12 col-xl-4">
-<h3>Korpus {{ corpus }}</h3>
-<p><a href="{{ url('corpus-instructions', args=[corpus.id]) }}">Korpusleitfaden</a></p>
-<a href="{{ url('testrun-view', args=[testruns.filter(corpus=corpus)[0].id, 0]) }}">Trainingsdurchlauf</a>
-<ul class="list-group">
-{% for batch in batches.filter(corpus=corpus) %}
-  <li class="list-group-item">
-  <a href="{{ url('sentence-view', args=[batch.id]) }}">Datenpaket {{ batch.id }}</a>
-  <div class="progress" style="height: 20px;">
-  <div class="progress-bar bg-success" role="progressbar" style="width: {{ batch.percentage_labeled }}%" aria-valuenow="{{ batch.percentage_labeled }}" aria-valuemin="0" aria-valuemax="100">{{ batch.percentage_labeled }}%</div>
+  <div class="col-md-10 col-xl-6">
+    <h1>{{ message }}</h1>
   </div>
-  </li>
-{% endfor %}
-</ul>
-</div>
-{% endfor %}
-
-<div class="col-4">
-Profil
 </div>
 
+<div class="row justify-content-center">
+  <div class="col-12 col-xl-6">
+    <p>Hier geht es zu den <a href="{{ url('instructions') }}">Annotationsrichtlinien</a>.</p>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-6">
+    <div class="row justify-content start">
+      {% for corpus in corpora %}
+      <div class="col-12 col-xl-4">
+        <h3>Korpus {{ corpus }}</h3>
+        <p><a href="{{ url('corpus-instructions', args=[corpus.id]) }}">Korpusleitfaden</a></p>
+        {% if testruns.filter(corpus=corpus) %}
+        <a href="{{ url('testrun-view', args=[testruns.filter(corpus=corpus)[0].id, 0]) }}">Trainingsdurchlauf</a>
+        {% endif %}
+        <ul class="list-group">
+          {% for batch in batches.filter(corpus=corpus) %}
+          <li class="list-group-item">
+            <a href="{{ url('sentence-view', args=[batch.id]) }}">Datenpaket {{ batch.id }}</a>
+            <div class="progress" style="height: 20px;">
+              <div class="progress-bar bg-success" role="progressbar" style="width: {{ batch.percentage_labeled }}%" aria-valuenow="{{ batch.percentage_labeled }}" aria-valuemin="0" aria-valuemax="100">{{ batch.percentage_labeled }}%</div>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
 </div>
 {% endblock %}

@@ -4,27 +4,28 @@
 
 {% block body %}
 <h1>Satzansicht</h1>
-<class="row">
-<class="col-10">
-<p>Korpus: {{ sentence.corpus }}</p>
-<p><a href="{{ url('corpus-instructions', args=[sentence.corpus.id]) }}">Link zu Korpus-Richtlinien</a></p>
-</class>
-<class="col-10">
-<p>Trainingsansicht {{ testrun.id }}</p>
-</class>
-<p>Irgendwas über Trainingsansicht</p>
+<div class="row">
+   <div class="col-10">
+      <p>Korpus: {{ sentence.corpus }}</p>
+      <p><a href="{{ url('corpus-instructions', args=[sentence.corpus.id]) }}">Link zu Korpus-Richtlinien</a></p>
+      </div>
+      <div class="col-10">
+         <p>Trainingsansicht {{ testrun.id }}</p>
+      </div>
+         <p>Irgendwas über Trainingsansicht</p>
+</div>
 
-<class="row">
-<class="col-10">
-<p>{{ sentence.text }}</p>
-</class>
-</class>
+<div class="row">
+   <div class="col-10">
+      <p>{{ sentence.text }}</p>
+   </div>
+</div>
 
 {% if entities %}
 <ul>
-{% for entity in entities %}
-<li>{{ entity }}</li>
-{% endfor %}
+   {% for entity in entities %}
+   <li>{{ entity }}</li>
+   {% endfor %}
 </ul>
 {% endif %}
 
@@ -33,16 +34,18 @@
 </div>
 
 <div class="row" id="goldlabel-display" style="display:none">
-<div class="col-6">
-{{ goldlabel.goldrelation_type }}
-</div>
+   <div class="col-6">
+      {{ goldlabel.goldsubject }}
+      {{ goldlabel.goldobject }}
+      {{ goldlabel.goldrelation_type }}
+   </div>
 </div>
 
 <button type="button" onclick="show('goldlabel-display');">Aufdecken</button>
 
 <script type="text/javascript">
 function show(elementId) {
- document.getElementById(elementId).style.display="block";
-}
+  document.getElementById(elementId).style.display="block";
+  }
 </script>
 {% endblock %}
