@@ -152,7 +152,7 @@ def testrun_view(request, testrun_id, iterator):
                 "testrun": testrun,
                 "entities": example_sentence.entities.all(),
                 "formset": formset,
-                "goldlabel": goldlabel
+                "goldlabels": goldlabels
             },
         )
 

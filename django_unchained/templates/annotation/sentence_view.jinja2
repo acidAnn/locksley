@@ -3,7 +3,11 @@
 {% import 'macros/util_macros.jinja2' as mutils %}
 
 {% block body %}
-<h1>Satzansicht</h1>
+<div class="row">
+   <div class="col-12">
+      <h1>Satzansicht</h1>
+   </div>
+</div>
 
 <div class="row">
    <div class="col-10">
@@ -24,7 +28,8 @@
 
 <div class="row">
     <div class="col-10">
-        {% if entities %}
+       {% if entities %}
+       <p>Entitäten:</p>
        <ul>
           {% for entity in entities %}
           <li>{{ entity }}</li>
@@ -35,7 +40,7 @@
 </div>
 
 
-<div class="row mt-2 justify-content-center">
+<div class="row mt-2">
    <div class="col-10">
       {{ mutils.get_label_add_form(formset, csrf_input) }}
    </div>

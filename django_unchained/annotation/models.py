@@ -80,7 +80,6 @@ class Label(models.Model):
 
     def __str__(self):
         return f"{self.id} - {self.sentence}"
-#        return f"Subjekt: {self.subject.name} - Objekt: {self.object.name} - Relationstyp: {self.relation_type.name}"
 
 
 class TestRun(models.Model):
@@ -89,6 +88,8 @@ class TestRun(models.Model):
 
     def __str__(self):
         return f"{self.id} - {self.corpus.tag_line}"
+
+    # TODO: unique together?
 
 
 class ExampleSentence(models.Model):

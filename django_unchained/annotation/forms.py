@@ -3,9 +3,9 @@ from .models import Label, RelationType, Entity
 
 
 class LabelForm(ModelForm):
-    subject = ModelChoiceField(queryset=Entity.objects.all())
-    object = ModelChoiceField(queryset=Entity.objects.all())
-    relation_type = ModelChoiceField(queryset=RelationType.objects.all())
+    subject = ModelChoiceField(label="Subjekt",queryset=Entity.objects.all())
+    object = ModelChoiceField(label="Objekt", queryset=Entity.objects.all())
+    relation_type = ModelChoiceField(label="Relationstyp", queryset=RelationType.objects.all())
 
     def __init__(self, *args, **kwargs):
         sentence = kwargs.pop("sentence", None)

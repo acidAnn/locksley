@@ -6,6 +6,7 @@
     {% for form in formset %}
     <div class="labeling form-row mb-1">
         {% for field in form %}
+        <p>{{ field.label }}:</p>
         {{ field }}
         {% endfor %}
         <input type="hidden" name="form-0-id" id="id_form-0-id" class=""/>
@@ -16,7 +17,7 @@
     </div>
     {% endfor %}
 
-    <div class="submit-btn-formset col-12 col-md-7 p-0">
+    <div class="submit-btn-formset col-4 col-md-2 p-0">
         <input class="btn btn-outline-primary btn-block rounded-0"
                type="submit" value="Speichern"/>
     </div>
