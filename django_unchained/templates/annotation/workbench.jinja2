@@ -20,7 +20,7 @@
   <div class="col-6">
     <div class="row justify-content-center">
       {% for corpus in corpora %}
-      <div class="card col-12 col-xl-4 m-2 p-3">
+      <div class="card col-12 col-md-5 m-2">
         <div class="card-body">
             <h3 class="card-title">Korpus {{ corpus }}</h3>
             <p><a class="card-link" href="{{ url('corpus-instructions', args=[corpus.id]) }}">Korpusleitfaden</a></p>

@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.shortcuts import render, redirect
 
-from .forms import LabelForm, LabelFormSet
+from .forms import LabelFormSet
 from .models import Sentence, Batch, Membership, Corpus, RelationType, TestRun, ExampleSentence, GoldLabel
 
 
@@ -121,8 +121,6 @@ def sentence_view(request, batch_id):
 @login_required
 def testrun_view(request, testrun_id, iterator):
     testrun = TestRun.objects.get(id=testrun_id)
-    print(testrun.number_of_example_sentences)
-    print(iterator)
 
     if iterator >= testrun.number_of_example_sentences:
         return redirect("testrun-completed")
@@ -130,11 +128,6 @@ def testrun_view(request, testrun_id, iterator):
     else:
         example_sentence = ExampleSentence.objects.filter(testrun=testrun_id)[iterator]
         goldlabels = GoldLabel.objects.filter(example_sentence=example_sentence)
-        if goldlabels:
-            goldlabel = goldlabels[0]
-        else:
-            # TODO: error
-            goldlabel = GoldLabel.objects.all()[0]
 
         iterator += 1
 
@@ -151,6 +144,7 @@ def testrun_view(request, testrun_id, iterator):
                 "testrun": testrun,
                 "entities": example_sentence.entities.all(),
                 "formset": formset,
+                "iterator": iterator,
                 "goldlabels": goldlabels
             },
         )

@@ -3,30 +3,30 @@
 {% import 'macros/util_macros.jinja2' as mutils %}
 
 {% block body %}
- <div class="row">
-   <div class="col-12">
-      <h1>Satzansicht</h1>
-   </div>
+<div class="row justify-content-center">
+  <div class="col-12 col-md-10 col-xl-6 text-center pt-3">
+    <h1>Korpus {{ sentence.corpus }}</h1>
+    <h2>Trainingsdurchlauf</h2>
+  </div>
 </div>
 
-<div class="row">
-   <div class="col-10">
-      <p>Korpus: {{ sentence.corpus }}</p>
-      <p><a href="{{ url('corpus-instructions', args=[sentence.corpus.id]) }}">Link zu Korpus-Richtlinien</a></p>
-   </div>
-   <div class="col-10">
+<div class="row justify-content-center">
+   <div class="col-sm-12 col-md-10 col-xl-6">
+      <p>Zum <a href="{{ url('corpus-instructions', args=[sentence.corpus.id]) }}">Korpusleitfaden</a></p>
       <p>Trainingsleitfaden</p>
    </div>
 </div>
 
-<div class="row">
-   <div class="col-10">
-      <p>{{ sentence.text }}</p>
-   </div>
-</div>
-
-<div class="row">
-    <div class="col-10">
+<div class="row justify-content-center">
+   <div class="col-10 col-xl-6 mb-1">
+      <div class="card">
+      <div class="card-header">
+          Beispielsatz {{ iterator }} von {{ testrun.number_of_example_sentences }}
+      </div>
+      <div class="card-body">
+          <p class="card-text">"{{ sentence.text }}"</p>
+       </div>
+       <div class="card-footer">
        {% if entities %}
        <p>Entitäten:</p>
        <ul>
@@ -35,17 +35,21 @@
           {% endfor %}
        </ul>
        {% endif %}
+       </div>
+      </div>
+   </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="submit-btn-formset col-4 col-md-2 m-2 p-0">
+        <input class="btn btn-outline-success btn-block rounded-0" type="submit" value="Musterlösung aufdecken" onclick="show('goldlabel-display');"/>
     </div>
 </div>
 
-<div class="submit-btn-formset col-4 col-md-2 p-0">
-    <input class="btn btn-outline-primary btn-block rounded-0" type="button" value="Musterlösung aufdecken" onclick="show('goldlabel-display');"/>
-</div>
-
-<div class="row" id="goldlabel-display" style="display:none">
-{% if goldlabels %}
+<div class="row justify-content-center" id="goldlabel-display" style="display:none">
+   <div class="col-10">
+      {% if goldlabels %}
     <p>Folgende Relationen sollten eingetragen werden:
-    <div class="col-10">
        <ul>
           {% for goldlabel in goldlabels %}
           {% if not goldlabel.goldrelation_type %}
@@ -55,21 +59,17 @@
           {% endif %}
           {% endfor %}
        </ul>
-   </div>
 {% else %}
     <p>Keine Musterlösung eingetragen. Sorry :)!</p>
 {% endif %}
-</div>
-
-<div class="row mt-2">
-   <div class="col-10">
-      {{ mutils.get_label_add_form(formset, csrf_input) }}
    </div>
 </div>
 
+{{ mutils.get_label_add_form(formset, csrf_input) }}
+
 <script type="text/javascript">
 function show(elementId) {
-  document.getElementById(elementId).style.display="block";
+  document.getElementById(elementId).style.display="grid";
   }
 </script>
 {% endblock %}

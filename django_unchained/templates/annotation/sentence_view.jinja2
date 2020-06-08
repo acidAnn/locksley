@@ -6,19 +6,18 @@
 
 <div class="row justify-content-center">
   <div class="col-12 col-md-10 col-xl-6 text-center pt-3">
-    <h1>Korpus {{ sentence.corpus }} annotieren</h1>
-    <h2>Paket {{ batch.id }}</h2>
+    <h1>Korpus {{ sentence.corpus }} annotieren: Paket {{ batch.id }}</h1>
   </div>
 </div>
 
 <div class="row justify-content-center">
-   <div class="col-12">
+   <div class="col-sm-12 col-md-10 col-xl-6">
       <p>Zum <a href="{{ url('corpus-instructions', args=[sentence.corpus.id]) }}">Korpusleitfaden</a></p>
    </div>
 </div>
 
 <div class="row justify-content-center">
-   <div class="col-10 col-xl-6">
+   <div class="col-10 col-xl-6 mb-1">
       <div class="card">
       <div class="card-header">
           Satz {{ batch.number_of_labeled_sentences+1 }} von {{ batch.number_of_sentences }}
@@ -40,23 +39,5 @@
    </div>
 </div>
 
-<div class="row justify-content-center">
-    <div class="col-10 col-xl-6 pt-3">
-       {% if entities %}
-       <p>Entitäten:</p>
-       <ul>
-          {% for entity in entities %}
-          <li>{{ entity }}</li>
-          {% endfor %}
-       </ul>
-       {% endif %}
-    </div>
-</div>
-
-
-<div class="row mt-2">
-   <div class="col-10">
-      {{ mutils.get_label_add_form(formset, csrf_input) }}
-   </div>
-</div>
+{{ mutils.get_label_add_form(formset, csrf_input) }}
 {% endblock %}

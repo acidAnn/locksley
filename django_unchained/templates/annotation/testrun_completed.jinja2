@@ -2,10 +2,20 @@
 
 {% block body %}
 <div class="row justify-content-center">
-    <div class="col-12 col-xl-6">
-        <h1>Trainingsdurchlauf erfolgreich abgeschlossen!</h1>
-        <p>Wunderbar, {{ request.user }}, jetzt kann es los gehen!</p>
-        <img src="{{ static('images/archer_side.png') }}" alt="Volltreffer!" height="50%">
-    </div>
+  <div class="col-12 col-md-10 col-xl-6 text-center pt-3">
+      <h1>Trainingsdurchlauf erfolgreich abgeschlossen!</h1>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+  <div class="col-sm-12 col-md-10 col-xl-6 text-center">
+       <p>Wunderbar, {{ request.user }}, jetzt kann es los gehen! Zurück zur <a href="{{ url('workbench') }}">Werkbank</a>.</p>
+  </div>
+</div>
+
+<div class="row justify-content-center">
+<div class="col-6">
+        <img src="{{ static('images/archer_side.png') }}" alt="Volltreffer!" width="50%">
+</div>
 </div>
 {% endblock %}

@@ -3,8 +3,8 @@ from .models import Label, RelationType, Entity
 
 
 class LabelForm(ModelForm):
-    subject = ModelChoiceField(label="Subjekt",queryset=Entity.objects.all())
-    object = ModelChoiceField(label="Objekt", queryset=Entity.objects.all())
+    subject = ModelChoiceField(label="Entität 1", queryset=Entity.objects.all())
+    object = ModelChoiceField(label="Entität 2", queryset=Entity.objects.all())
     relation_type = ModelChoiceField(label="Relationstyp", queryset=RelationType.objects.all())
 
     def __init__(self, *args, **kwargs):
