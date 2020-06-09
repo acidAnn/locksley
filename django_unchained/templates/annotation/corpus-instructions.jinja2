@@ -31,7 +31,15 @@
                   <tr>
                     <th scope="row">{{ relation_type.name }}</th>
                     <th>{{ relation_type.description }}</th>
-                    <th>{{ relation_type.example }}</th>
+                    <th>
+                        <ul>
+                        <li>{{ relation_type.example1 }}</li>
+                        <li>{{ relation_type.example2 }}</li>
+                        <li>{{ relation_type.example3 }}</li>
+                        <li>{{ relation_type.example4 }}</li>
+                        <li>{{ relation_type.example5 }}</li>
+                        </ul>
+                    </th>
                    </tr>
               {% endfor %}
           </tbody>

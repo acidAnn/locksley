@@ -18,7 +18,11 @@ class Corpus(models.Model):
 class RelationType(models.Model):
     name = models.CharField(max_length=500, unique=True)
     description = models.CharField(max_length=1000, unique=True)
-    example = models.CharField(max_length=1000, unique=True)
+    example1 = models.CharField(max_length=1000, unique=True)
+    example2 = models.CharField(max_length=1000, unique=True)
+    example3 = models.CharField(max_length=1000, unique=True)
+    example4 = models.CharField(max_length=1000, unique=True)
+    example5 = models.CharField(max_length=1000, unique=True)
     corpus = models.ForeignKey(Corpus, null=False, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -27,7 +31,6 @@ class RelationType(models.Model):
 
 class Entity(models.Model):
     name = models.CharField(max_length=500)
-    # TODO: entity type?
 
     def __str__(self):
         return f"{self.name}"
@@ -67,11 +70,11 @@ class Membership(models.Model):
 
 class Label(models.Model):
     sentence = models.ForeignKey(Sentence, null=False, on_delete=models.CASCADE)
-    subject = models.ForeignKey(
-        Entity, null=True, on_delete=models.PROTECT, related_name="subject"
+    entity1 = models.ForeignKey(
+        Entity, null=True, on_delete=models.PROTECT, related_name="entity1"
     )
-    object = models.ForeignKey(
-        Entity, null=True, on_delete=models.PROTECT, related_name="object"
+    entity2 = models.ForeignKey(
+        Entity, null=True, on_delete=models.PROTECT, related_name="entity2"
     )
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     relation_type = models.ForeignKey(
@@ -89,8 +92,6 @@ class TestRun(models.Model):
     def __str__(self):
         return f"{self.id} - {self.corpus.tag_line}"
 
-    # TODO: unique together?
-
 
 class ExampleSentence(models.Model):
     text = models.CharField(max_length=500, unique=True)
@@ -104,11 +105,11 @@ class ExampleSentence(models.Model):
 
 class GoldLabel(models.Model):
     example_sentence = models.ForeignKey(ExampleSentence, null=False, on_delete=models.CASCADE)
-    goldsubject = models.ForeignKey(
-        Entity, null=True, on_delete=models.PROTECT, related_name="goldsubject"
+    goldentity1 = models.ForeignKey(
+        Entity, null=True, on_delete=models.PROTECT, related_name="goldentity1"
     )
-    goldobject = models.ForeignKey(
-        Entity, null=True, on_delete=models.PROTECT, related_name="goldobject"
+    goldentity2 = models.ForeignKey(
+        Entity, null=True, on_delete=models.PROTECT, related_name="goldentity2"
     )
     goldrelation_type = models.ForeignKey(
         RelationType, null=True, on_delete=models.PROTECT
