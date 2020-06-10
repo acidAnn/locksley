@@ -6,7 +6,7 @@ networks:
 
 services:
   annotation:
-    image: michigg/lama
+    image:
     networks:
       - default
       - pg_db
