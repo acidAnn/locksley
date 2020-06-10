@@ -1,9 +1,28 @@
+from django.contrib import messages
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 from django.db import IntegrityError
 from django.shortcuts import render, redirect
 
-from .forms import LabelFormSet
+from .forms import LabelFormSet, SignUpForm
 from .models import Sentence, Batch, Membership, Corpus, RelationType, TestRun, ExampleSentence, GoldLabel
+
+
+def signup(request):
+    if request.method == "POST":
+        form = SignUpForm(request.POST)
+
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get("username")
+            messages.success(request, f'Account für {username} erfolgreich angelegt!')
+            return redirect("workbench")
+
+    else:
+        form = SignUpForm()
+
+    return render(request, "registration/signup.jinja2", {"form": form})
 
 
 @login_required

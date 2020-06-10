@@ -1,0 +1,32 @@
+{% extends 'base.jinja2' %}
+
+{% block body %}
+<div class="row justify-content-center">
+  <div class="col-12 col-md-10 col-xl-6 text-center pt-3">
+    <h1>Als Nutzer:in registrieren</h1>
+  </div>
+</div>
+
+
+<div class="row justify-content-center">
+  <div class="col-10 col-xl-6 mb-1">
+  <form method="post">
+    {{ csrf_input }}
+    {% for field in form %}
+    <p class="mb-3">
+    {{ field.label }}: {{ field }}<p>
+    {% if field.help_text %}
+    <small style="color: grey">{{ field.help_text }}</small>
+    {% endif %}
+    </p>
+    {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+    {% endfor %}
+    {% endfor %}
+    <div class="row justify-content-center">
+    <button type="submit" class="btn btn-primary btn-block col-6 p-2">Registrieren</button>
+     </div>
+  </form>
+</div>
+</div>
+{% endblock %}
