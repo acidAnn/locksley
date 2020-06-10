@@ -5,7 +5,6 @@ from .models import (
     RelationType,
     Sentence,
     Batch,
-    User,
     Label,
     Entity,
     Membership,
@@ -24,4 +23,3 @@ admin.site.register(Membership)
 admin.site.register(TestRun)
 admin.site.register(ExampleSentence)
 admin.site.register(GoldLabel)
-admin.site.register(User, UserAdmin)

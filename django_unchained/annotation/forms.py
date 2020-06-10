@@ -1,11 +1,25 @@
-from django.forms import ModelForm, ModelChoiceField, formset_factory
+from django import forms
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from .models import Label, RelationType, Entity
 
 
-class LabelForm(ModelForm):
-    entity1 = ModelChoiceField(label="Entität 1", queryset=Entity.objects.all())
-    entity2 = ModelChoiceField(label="Entität 2", queryset=Entity.objects.all())
-    relation_type = ModelChoiceField(label="Relationstyp", queryset=RelationType.objects.all())
+class SignUpForm(UserCreationForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = User
+        fields = ["username", "email", "password1", "password2"]
+
+    def __init__(self, *args, **kwargs):
+        super(SignUpForm, self).__init__(*args, **kwargs)
+        self.fields['password1'].help_text = 'mind. 8 Zeichen, nicht nur Ziffern'
+
+
+class LabelForm(forms.ModelForm):
+    entity1 = forms.ModelChoiceField(label="Entität 1", queryset=Entity.objects.all())
+    entity2 = forms.ModelChoiceField(label="Entität 2", queryset=Entity.objects.all())
+    relation_type = forms.ModelChoiceField(label="Relationstyp", queryset=RelationType.objects.all())
 
     def __init__(self, *args, **kwargs):
         sentence = kwargs.pop("sentence", None)
@@ -26,7 +40,7 @@ class LabelForm(ModelForm):
         fields = ["entity1", "entity2", "relation_type"]
 
 
-LabelFormSet = formset_factory(
+LabelFormSet = forms.formset_factory(
     LabelForm,
     extra=1
 )
