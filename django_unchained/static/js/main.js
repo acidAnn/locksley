@@ -7,7 +7,7 @@ function ready(fn) {
     }
 }
 
-alert('ready, steady, go');
+alert('Please try to ignore this alert');
 
 ready(function () {
     var searchfield = document.querySelector("#search");
