@@ -7,6 +7,7 @@ function ready(fn) {
     }
 }
 
+alert('ready, steady, go');
 
 ready(function () {
     var searchfield = document.querySelector("#search");
