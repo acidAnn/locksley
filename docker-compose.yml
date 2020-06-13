@@ -1,4 +1,4 @@
-version: "3"
+version: "3.8"
 
 networks:
   pg_db:
@@ -6,22 +6,27 @@ networks:
 
 services:
   annotation:
-    image:
+    image: locksley
+    build:
+      context: .
+      dockerfile: Dockerfile
     networks:
       - default
       - pg_db
-    env_file:
-      - production.env
-    ports:
-      - 8888:80
     volumes:
-      - ./mail_templates:/annotation/templates/mails
+      - ./django_unchained:/annotation
+    env_file:
+      - sample.env
+    ports:
+      - 8080:80
+    depends_on:
+      - dbannotation
 
   dbannotation:
-    image: postgres:11.2-alpine
+    image: postgres:12.3-alpine
     networks:
       - pg_db
     volumes:
-      - ./data/pgdata/:/var/lib/postgresql/data/
+      - ../databases:/var/lib/postgresql/data/
     env_file:
-      - production.env
+      - sample.env
