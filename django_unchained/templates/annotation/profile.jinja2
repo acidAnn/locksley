@@ -1,0 +1,18 @@
+{% extends 'base.jinja2' %}
+
+{% block body %}
+<div class="row justify-content-center">
+  <div class="col-12 col-md-10 col-xl-6 text-center pt-3">
+    <h1>Profil von {{ request.user.username }}</h1>
+  </div>
+</div>
+
+<div class="row justify-content-between">
+  <div class="col-6">
+    <img src="{{ static('images/marguerite.jpg') }}" alt="Volltreffer!" width="50%" class="rounded mx-auto d-block"/>
+  </div>
+  <div class="col-6">
+    <p>Hier kannst du dein <a href="{{ url('password_change') }}">Passwort ändern</a>.</p>
+  </div>
+</div>
+{% endblock %}

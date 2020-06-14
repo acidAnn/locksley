@@ -181,9 +181,6 @@
 {% endmacro %}
 
 {% macro password_input(field, list='', css_classes='') -%}
-    {% if field.help_text %}
-        <br/>
-    {% endif %}
     <div class="form-group">
         <input type="password"
                 {% if css_classes %}
@@ -216,6 +213,9 @@
             {% endif %}
         </small>
     </div>
+    {% if field.help_text %}
+        <small class="form-text text-muted">{{ field.help_text|safe }}</small>
+    {% endif %}
 {% endmacro %}
 
 {% macro telephone_input(field, type='', step_size='0.01') -%}

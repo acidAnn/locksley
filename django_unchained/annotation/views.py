@@ -26,6 +26,11 @@ def signup(request):
 
 
 @login_required
+def profile(request):
+    return render(request, "annotation/profile.jinja2")
+
+
+@login_required
 def workbench(request):
     corpora = Corpus.objects.all()
     all_batches = Batch.objects.filter(assignee=request.user)
