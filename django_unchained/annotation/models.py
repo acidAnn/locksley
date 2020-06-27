@@ -27,6 +27,7 @@ class RelationType(models.Model):
 
 class Entity(models.Model):
     name = models.CharField(max_length=500)
+    type = models.CharField(default="", max_length=500)
 
     def __str__(self):
         return f"{self.name}"

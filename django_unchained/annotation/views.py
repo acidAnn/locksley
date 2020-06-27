@@ -114,14 +114,12 @@ def sentence_view(request, batch_id):
                             membership.labeled = True
                             membership.save()
 
-                            batch.number_of_labeled_sentences += 1
-                            batch.percentage_labeled = (
-                                batch.number_of_labeled_sentences * 100
-                            ) / batch.number_of_sentences
-                            batch.save()
-
                     else:
                         print("INVALID FORM")
+
+                batch.number_of_labeled_sentences += 1
+                batch.percentage_labeled = (batch.number_of_labeled_sentences * 100) / batch.number_of_sentences
+                batch.save()
 
                 return redirect("sentence-view", batch_id=batch_id)
             else:
