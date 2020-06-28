@@ -1,0 +1,22 @@
+[
+  {
+    "name": "veröffentlicht in",
+    "description": "Eine Person veröffentlicht Artikel in einer als Organisation markierten Publikation wie etwa einem Journal, einem Magazin oder einer Zeitschrift",
+    "example1": "\"Manche Froscharten können bis zu drei Oktaven höher als Menschen singen, berichtet Gwendolin Miller von der Uni Birmingham im Fachjournal Frogs Monthly.\" - Entität 1: Gwendolin Miller, Entität 2: Frogs Monthly",
+    "example2": "\"Die französischen Forscher um Jules Minard berichten im Fachblatt Science, dass ihnen mit ihrer neuartigen Zentrifuge ein Durchbruch gelungen ist.\" - Entität 1: Jules Minard, Entität 2: Science",
+    "example3": "\"Es könnte dort noch mehr Zwergplaneten geben, wie Fischer und ihre Kollegen in Aktuelle Astronomie schreiben.\" - Entität 1: Fischer, Entität 2: Aktuelle Astronomie",
+    "example4": "\"Für die in Current Sociology publizierte Studie befragte das Team um Richard Droste 2.000 Dachdecker aus der Oberpfalz.\" - Entität 1: Richard Droste, Entität 2: Current Sociology",
+    "example5": "\"Ihre Ergebnisse konnten die Forscher um Rita Reading in Fachmagazin Nature veröffentlichen.\" - Entität 1: Rita Reading, Entität 2: Nature",
+    "corpus": "Wissenschaftsartikel"
+  },
+  {
+    "name": "Mutter von",
+    "description": "a",
+    "example1": "",
+    "example2": "",
+    "example3": "",
+    "example4": "",
+    "example5": "",
+    "corpus": "Dune"
+  }
+]

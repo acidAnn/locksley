@@ -15,6 +15,7 @@ services:
       - pg_db
     volumes:
       - ./django_unchained:/annotation
+      - ./data:/data
     env_file:
       - sample.env
     ports:

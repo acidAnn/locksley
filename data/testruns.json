@@ -1,0 +1,52 @@
+[
+  {
+    "corpus": "Dune",
+    "number_of_example_sentences": 2,
+    "example_sentences":[
+      {
+        "text": "Jessica ist Pauls Mutter.",
+        "entities": [
+          {
+            "id": 111,
+            "name": "Jessica",
+            "type": "Person"
+          },
+          {
+            "id": 222,
+            "name": "Pauls",
+            "type": "Person"
+          }
+        ],
+        "gold_labels": [
+          {
+            "goldentity1": 111,
+            "goldentity2": 222,
+            "goldrelation_type": "Mutter von"
+          }
+        ]
+      },
+      {
+        "text": "Paul ist der Sohn von Leto.",
+        "entities": [
+          {
+            "id": 333,
+            "name": "Paul",
+            "type": "Person"
+          },
+          {
+            "id": 444,
+            "name": "Leto",
+            "type": "Person"
+          }
+        ],
+        "gold_labels": [
+          {
+            "goldentity1": 333,
+            "goldentity2": 444,
+            "goldrelation_type": ""
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,12 @@
+[
+  {
+    "title": "Wissenschaftsartikel",
+    "tag_line": "Wissenschaftsmeldungen aus der österreichischen Tageszeitung Der Standard.",
+    "description": "Dieser Korpus besteht aus Artikeln der Wissenschaftsredaktion bei der österreichischen Tageszeitung Der Standard. Darin wird über bahnbrechende bis kuriose wissenschaftliche Entdeckungen und Forschungsfortschritte aus so unterschiedlichen Disziplinen wie der Raumfahrt, der Archäologie oder der Zoologie berichtet."
+  },
+  {
+    "title": "Dune",
+    "tag_line": "Sätze aus Frank Herberts Roman 'Dune'.",
+    "description": "Dieser Korpus stammt aus dem Roman 'Dune'."
+  }
+]
