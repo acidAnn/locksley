@@ -19,7 +19,7 @@ class SignUpForm(UserCreationForm):
 class LabelForm(forms.ModelForm):
     entity1 = forms.ModelChoiceField(label="Entität 1", queryset=Entity.objects.all())
     entity2 = forms.ModelChoiceField(label="Entität 2", queryset=Entity.objects.all())
-    relation_type = forms.ModelChoiceField(label="Relationstyp", queryset=RelationType.objects.all())
+    relation_type = forms.ModelChoiceField(label="Relation", queryset=RelationType.objects.all())
 
     def __init__(self, *args, **kwargs):
         sentence = kwargs.pop("sentence", None)

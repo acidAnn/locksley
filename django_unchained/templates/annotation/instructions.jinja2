@@ -2,15 +2,84 @@
 
 {% block body %}
 <div class="row justify-content-center">
-  <div class="col-12 col-md-10 col-xl-6 text-center pt-3">
+  <div class="col-12 col-md-10 text-center pt-3">
     <h1>Annotationsleitfaden</h1>
   </div>
 </div>
 
 <div class="row justify-content-center">
-    <div class="col-sm-12 col-md-10 col-xl-6 pt-2">
-        <h2>Zunächst</h2>
-        <p>Nun, es war einmal ... Hier wird es nichts anderes als Text geben, wahrscheinlich. Was für ein Wunder, oder vielleicht auch nicht. Annotieren ist Spaß Hier wird es nichts anderes als Text geben, wahrscheinlich. Was für ein Wunder, oder vielleicht auch nicht. Annotieren ist Spaß..</p>
+    <div class="col-sm-12 col-md-10 pt-2">
+        <h2>Relationsextraktion: Worum geht es?</h2>
+        <p>Zunächst einmal vielen Dank, dass du hier her gefunden hast! Danke für deine Hilfe :) Für die Wissenschaft! ;)</p>
+        <p>Diese Plattform ist Teil von meiner Masterarbeit, bei der es um <strong>Relationsextraktion</strong> geht. Relationsextraktion ist eine Methode, um automatisiert Informationen aus Text herauszuziehen.</p>
+        <p>Konkret geht es um einzelne Sätze, die mehrere Objekte wie Personen, Organisationen oder Orte erwähnen. Diese Objekte, die im Text beschrieben werden, bezeichnet man fachsprachlich auch als die <strong>Entitäten</strong> in einem Satz.</p>
+        <p>Bei der Relationsextraktion wollen wir nun erkennen, welche Beziehungen (= <strong>Relationen</strong>) ein Satz zwischen Entitäten herstellt.</p>
+        <p>Aber wozu ist das gut? Mit den extrahierten Beziehungen lassen sich Wissensdatenbanken befüllen. Die so verknüpften Informationen kann man dann wiederum verwenden, um zum Beispiel Beziehungsgeflecht von Personen zu durchsuchen oder Fragen zu Personen, Organisationen und Orten zu beantworten.</p>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-sm-12 col-md-10 pt-2">
+        <h2>Beispiel</h2>
+        <p>Nehmen wir zum Beispiel folgenden Satz:</p>
+        <p>"Michael Palin gehörte lange Jahre zur Komikergruppe Monty Python."</p>
+        <p>Er enthält zwei Entitäten:</p>
+            <ul>
+               <li>Michael Palin, eine Person</li>
+               <li>Monty Python, eine Organisation</li>
+            </ul>
+        <p>Der Satz setzt diese beiden Entitäten in eine besondere Beziehung zueinander: Michael Palin war ein <strong>Mitglied von</strong> <a href="https://www.youtube.com/watch?v=sAn7baRbhx4">Monty Python</a>.</p>
+        <p>Diese Art von Beziehungen oder Relationen zwischen zwei Entitäten gilt es nun in der Relationsextraktion zu identifizieren.</p>
+        <p>Die Beziehungen, die wir betrachten werden, haben normalerweise ein Richtung: In diesem Fall geht die Beziehung von Michael Palin aus und wird zu Monty Python hergestellt. Umgekehrt wäre es aber falsch zu sagen, dass Monty Python ein Mitglied von Michael Palin ist. Deshalb  werden wir die Entität, von der eine Beziehung ausgeht, ab jetzt <strong>Entität 1</strong> nennen und die andere Entität, auf die die Beziehung verweist, <strong>Entität 2</strong>.</p>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-sm-12 col-md-10 pt-2">
+        <h2>Deine Aufgabe</h2>
+        <p>Ziel meiner Masterarbeit ist es, dass wie gerade im Beispiel beschrieben Relationen zwischen Entitäten automatisiert erkannt werden. Dafür können Techniken des Maschinellen Lernens eingesetzt werden. Allerdings braucht die Maschine eine Art Starthilfe vom Menschen, um zu lernen: Sie benötigt in unserem Fall Beispielsätze mit Entitäten, für die ein Mensch bereits überprüft hat, ob eine Relation enthalten ist und wenn ja welche. Diese Beispielsätze helfen der Maschine dann zu lernen, wie sie neue, Relationen in noch nie gesehene Sätzen finden kann.</p>
+        <p>Der Vorgang, bei dem ein Mensch sich Beispielsätze ansieht und eine Entscheidung zu den enthaltenen Relationen trifft, heißt <strong>Annotieren</strong>. Genau das ist hier nun deine Aufgabe.</p>
+        <p>Am Anfang des Annotationsvorgangs steht ein <strong>Korpus</strong>, eine Textsammlung, aus der die Beispielsätze stammen. Auf der Werkbank wird dir der zu bearbeitende Korpus bzw. die Korpora angezeigt. Dort findest du auch noch einmal einen kurzen Korpusleitfaden, in dem du erfährst, welche Arten von Beziehungen für die Textsammlung betrachtet werden sollen. Das kann nämlich sehr vom Thema der Texte abhängen: Bei Texten über die Monty Pythons würden wir uns vielleicht für Beziehungen wie welche Organisation an welchem Ort einen Auftritt hatte oder welche Person welche andere imitiert hat. Bei Texten über Bergsteigen im Himalayagebirge würden wir uns vielleicht eher dafür interessieren, welche Person die Erstbesteigung eines Berges geschafft hast oder welche Person mit welcher Begleiterperson unterwegs war.</p>
+        <p>Danach geht es an das eigentliche Annotieren: Die Sätze werden für dich in handliche <strong>Datenpakete</strong> abgepackt präsentiert. In der Werkbank kannst du jederzeit nachsehen, wie dein Fortschritt bei einem Datenpaket aussieht.</p>
+        <p>Wenn du auf ein Datenpaket klickst und damit zu beginnen, dann kommst du zu einer Ansicht, die dir einen Satz und ihre Entitäten zeigt. Bitte lies dir den Satz durch und überlege, ob er eine der gesuchten Relationen zwischen den Entitäten ausdrückt. Wenn du dir unsicher bist, dann versuche einfach nach deiner spontanen Intuition zu antworten. Keine Sorge, jeder Satz wird von zwei Personen annotiert, so dass schwierige Fälle auf jeden Fall noch einmal nach dem Mehraugenprinzip gelöst werden.</p>
+        <p>Bedenke dabei, dass es nur um die Informationen geht, die der gezeigte Satz <strong>explizit</strong> angibt. Bei dem Satz "Michael Palin ist ein Komiker und Monty Python war eine Komikergruppe." etwa steht nichts darüber, dass Michael Palin Mitglied von Monty Python war und selbst wenn man diese Informatioen aus dem Hintergrundwissen mobilisieren könnte, sollte sie deshalb auch nicht annotiert werden. Beachte außerdem, dass es nicht von Bedeutung ist, ob ein Satz in der Vergangenheit oder Gegenwart geschrieben ist (z. B. "Michael Palin war Mitglied von Monty Python." vs. "Michael Palin ist Mitglied von Monty Python.") - solange eine Beziehung zu irgendeinem Zeitpunkt gegolten hat, sollte sie annotiert werden.</p>
+        <img src="{{ static('images/screenshot_annotation_view_full.png') }}" alt="Annotationsansicht" width="90%" class="rounded mx-auto d-block"/>
+        <p>Falls du eine oder mehrere Beziehungen entdecken kannst, trage diese bitte über die Felder unten in der Ansicht ein:</p>
+        <ul>
+            <li>Entität 1: die Entität, von der die Beziehung ausgeht</li>
+            <li>Entität 2: die Entität, zu der die Beziehung von Entität 1 aus hergestellt wird</li>
+            <li>Relation: die Art von Beziehung zwischen beiden</li>
+        </ul>
+        <p>Du kannst das +-Zeichen verwenden, um weitere Relationen hinzuzufügen.</p>
+        <img src="{{ static('images/screenshot_annotation_view_filled_in_full.png') }}" alt="Annotationsansicht" width="90%" class="rounded mx-auto d-block"/>
+        <p>Wundere dich nicht, wenn dir of auch Sätze angezeigt werden, in denen keine der gesuchten Beziehungen vorkommen. Solche Beispielsätze zu sammeln ist ebenfalls wichtig, um der Maschine später beizubringen, diesen Fall auch zu erkennen. Falls du auf einen solchen Satz stößt, dann brauchst du nichts weiter einzutragen. Hier ein Beispiel, wie das aussehen würde:</p>
+        <img src="{{ static('images/screenshot_annotation_view_no_relation_full.png') }}" alt="Annotationsansicht" width="90%" class="rounded mx-auto d-block"/>
+        <p>Wenn du denkst, mit dem Satz fertig zu sein, dann klicke auf Speichern. Dadurch gelangst du immer zum nächsten Satz im Datenpaket, solange bis dieses fertig ist. Du kannst zwischendurch aber natürlich auch das Annotieren pausieren und die Seite verlassen. Wenn du dann das nächste Mal wieder auf der Werkbank auf das Datenpaket drückst, kommst du automatisch wieder zu der Stelle, wo du das letzte Mal aufgehört hast.</p>
+        <p>Das mag sich alles im Moment noch etwas abstrakt anhören. Damit du dich erst einmal etwas mit der Funktionsweise der Annotationsansicht und den Relationstypen vertraut machen kannst, gibt es für jeden Korpus einen <strong>Trainingsdurchlauf</strong>. Wenn du darauf klickst, siehst du eine Ansicht, die der tatsächlichen Annotationsansicht sehr ähnlich sieht. Der Unterschied liegt darin, dass du, nachdem du dir deine Entscheidung zu den Relationen überlegt hast, eine "Musterlösung" aufdecken kannst, um zu sehen, ob du die Aufgabe soweit erfasst hast. Außerdem kannst du den Trainingsdurchlauf im Gegensatz zu den tatsächlichen Datenpaketen so oft durchlaufen, wie du möchtest.</p>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-sm-12 col-md-10 pt-2">
+        <h2>Glossar</h2>
+        <p>Huch, das waren viele Fachbegriffe. Hier noch einmal zur Übersicht:</p>
+        <ul class="list-group">
+            <li class="list-group-item"><strong>Entität:</strong> Ein Objekt, das in einem Text beschrieben wird. In unserem Fall interessieren wir uns für drei Arten von Entitäten: Personen, Organisationen und Orte.</li>
+            <li class="list-group-item"><strong>Relation:</strong> Eine Beziehung zwischen zwei Entitäten.</li>
+            <li class="list-group-item"><strong>Relationsextraktion:</strong> Die Aufgabe herauszufinden, welche Beziehungen zwischen Entitäten einem Satz ausgedrückt werden.</li>
+            <li class="list-group-item"><strong>Entität 1:</strong> Diejenige Entität in einer Beziehung, von der die Beziehung ausgeht (z. B. bei Mitglied von die Person, die die Mitgliedschaft inne hat).</li>
+            <li class="list-group-item"><strong>Entität 2:</strong> Diejenige Entität in einer Beziehung, auf die die Beziehung verweist (z. B. bei Mitglied von die Organisation, der jemand angehört).</li>
+            <li class="list-group-item"><strong>Korpus:</strong> Eine Sammlung von Texten.</li>
+            <li class="list-group-item"><strong>Annotieren:</strong> In der Natürlichen Sprachverarbeitung - der Vorgang, bei dem ein Mensch sich einen bestimmten Text ansieht und eine Anmerkung zu gewissen Eigenschaften dieses Textes hinterlässt. In unserem Fall merken Menschen zu Sätzen an, welche Relationen ihrer Meinung nach enthalten sind.</li>
+        </ul>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-sm-12 col-md-10 pt-2">
+        <h2>So geht es weiter</h2>
+        <p>Hoffentlich hat dir dieser Leitfaden alle Informationen geliefert, um mit dem Annotieren loszulegen. Falls du noch Fragen hast, zögere nicht, dich bei mir zu melden :) Lass mich auch gerne wissen, wie ich Locksley noch verbessern kann.</p>
+        <p>Noch einmal tausend Dank für deine Hilfe!</p>
     </div>
 </div>
 {% endblock %}
