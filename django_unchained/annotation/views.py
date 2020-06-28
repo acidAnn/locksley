@@ -1,11 +1,9 @@
 from django.contrib import messages
-from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
 from django.db import IntegrityError
 from django.shortcuts import render, redirect
 
-from .forms import LabelFormSet, SignUpForm
+from .forms import LabelFormSet, SignUpForm, TestRunLabelFormSet
 from .models import Sentence, Batch, Membership, Corpus, RelationType, TestRun, ExampleSentence, GoldLabel
 
 
@@ -134,7 +132,7 @@ def sentence_view(request, batch_id):
             {
                 "sentence": sentence,
                 "batch": batch,
-                "entities": sentence.entities.all(),
+                "entities": sentence.entity_set.all(),
                 "relation_types": RelationType.objects.filter(corpus=sentence.corpus),
                 "formset": formset},
         )
@@ -156,7 +154,7 @@ def testrun_view(request, testrun_id, iterator):
         if request.method == "POST":
                 return redirect("testrun-view", testrun_id=testrun_id, iterator=iterator)
         else:
-            formset = LabelFormSet(form_kwargs={"sentence": example_sentence})
+            formset = TestRunLabelFormSet(form_kwargs={"example_sentence": example_sentence})
 
         return render(
             request,
@@ -164,7 +162,7 @@ def testrun_view(request, testrun_id, iterator):
             {
                 "sentence": example_sentence,
                 "testrun": testrun,
-                "entities": example_sentence.entities.all(),
+                "entities": example_sentence.exampleentity_set.all(),
                 "formset": formset,
                 "iterator": iterator,
                 "goldlabels": goldlabels

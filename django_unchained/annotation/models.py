@@ -25,21 +25,21 @@ class RelationType(models.Model):
         return f"{self.name}"
 
 
-class Entity(models.Model):
-    name = models.CharField(max_length=500)
-    type = models.CharField(default="", max_length=500)
-
-    def __str__(self):
-        return f"{self.name}"
-
-
 class Sentence(models.Model):
     text = models.CharField(max_length=500, unique=True)
     corpus = models.ForeignKey(Corpus, null=True, on_delete=models.SET_NULL)
-    entities = models.ManyToManyField(Entity)
 
     def __str__(self):
         return f"{self.id} - {self.text}"
+
+
+class Entity(models.Model):
+    name = models.CharField(max_length=500)
+    type = models.CharField(default="", max_length=500)
+    sentence = models.ForeignKey(Sentence, null=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.name}"
 
 
 class Batch(models.Model):
@@ -92,7 +92,6 @@ class TestRun(models.Model):
 
 class ExampleSentence(models.Model):
     text = models.CharField(max_length=500, unique=True)
-    entities = models.ManyToManyField(Entity)
     testrun = models.ForeignKey(TestRun, null=True, on_delete=models.SET_NULL)
     corpus = models.ForeignKey(Corpus, null=True, on_delete=models.SET_NULL)
 
@@ -100,13 +99,22 @@ class ExampleSentence(models.Model):
         return f"{self.id} - {self.text}"
 
 
+class ExampleEntity(models.Model):
+    name = models.CharField(max_length=500)
+    type = models.CharField(default="", max_length=500)
+    example_sentence = models.ForeignKey(ExampleSentence, null=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.name}"
+
+
 class GoldLabel(models.Model):
     example_sentence = models.ForeignKey(ExampleSentence, null=False, on_delete=models.CASCADE)
     goldentity1 = models.ForeignKey(
-        Entity, null=True, on_delete=models.PROTECT, related_name="goldentity1"
+        ExampleEntity, null=True, on_delete=models.PROTECT, related_name="goldentity1"
     )
     goldentity2 = models.ForeignKey(
-        Entity, null=True, on_delete=models.PROTECT, related_name="goldentity2"
+        ExampleEntity, null=True, on_delete=models.PROTECT, related_name="goldentity2"
     )
     goldrelation_type = models.ForeignKey(
         RelationType, null=True, on_delete=models.PROTECT

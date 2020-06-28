@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
 from .models import (
     Corpus,
     RelationType,
@@ -10,6 +9,7 @@ from .models import (
     Membership,
     TestRun,
     ExampleSentence,
+    ExampleEntity,
     GoldLabel
 )
 
@@ -22,4 +22,5 @@ admin.site.register(Entity)
 admin.site.register(Membership)
 admin.site.register(TestRun)
 admin.site.register(ExampleSentence)
+admin.site.register(ExampleEntity)
 admin.site.register(GoldLabel)
