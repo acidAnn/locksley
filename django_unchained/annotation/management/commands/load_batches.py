@@ -19,8 +19,7 @@ class Command(BaseCommand):
                 corpus = Corpus.objects.get(title=batch["corpus"])
 
                 batch_instance = Batch(
-                    corpus=corpus,
-                    number_of_sentences=batch["number_of_sentences"]
+                    corpus=corpus
                 )
                 batch_instance.save()
 

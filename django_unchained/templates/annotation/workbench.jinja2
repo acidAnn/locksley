@@ -30,12 +30,14 @@
             {% endif %}
             <ul class="list-group">
                 {% for batch in batches.filter(corpus=corpus) %}
+                  {% if batch.sentences.count() > 0 %}
                   <li class="list-group-item">
                     <a href="{{ url('sentence-view', args=[batch.id]) }}">Datenpaket {{ batch.id }}</a>
                     <div class="progress" style="height: 20px;">
-                      <div class="progress-bar bg-success" role="progressbar" style="width: {{ batch.percentage_labeled }}%" aria-valuenow="{{ batch.percentage_labeled }}" aria-valuemin="0" aria-valuemax="100">{{ batch.percentage_labeled }}%</div>
+                      <div class="progress-bar bg-success" role="progressbar" style="width: {{ ((batch.number_of_labeled_sentences * 100) / batch.sentences.count())|round|int }}%" aria-valuenow="{{ ((batch.number_of_labeled_sentences * 100) / batch.sentences.count())|round|int  }}" aria-valuemin="0" aria-valuemax="100">{{ ((batch.number_of_labeled_sentences * 100) / batch.sentences.count())|round|int }}%</div>
                     </div>
                   </li>
+                  {% endif %}
               {% endfor %}
             </ul>
         </div>

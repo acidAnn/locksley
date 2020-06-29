@@ -4,8 +4,8 @@ from django.db import models
 
 class Corpus(models.Model):
     title = models.CharField(max_length=500, unique=True)
-    tag_line = models.CharField(max_length=500, unique=True)
-    description = models.CharField(max_length=10000, unique=True)
+    tag_line = models.CharField(max_length=500)
+    description = models.CharField(max_length=10000)
 
     def __str__(self):
         return f"{self.title}"
@@ -13,12 +13,12 @@ class Corpus(models.Model):
 
 class RelationType(models.Model):
     name = models.CharField(max_length=500, unique=True)
-    description = models.CharField(max_length=1000, unique=True)
-    example1 = models.CharField(max_length=1000, unique=True)
-    example2 = models.CharField(max_length=1000, unique=True)
-    example3 = models.CharField(max_length=1000, unique=True)
-    example4 = models.CharField(max_length=1000, unique=True)
-    example5 = models.CharField(max_length=1000, unique=True)
+    description = models.CharField(max_length=1000)
+    example1 = models.CharField(max_length=1000)
+    example2 = models.CharField(max_length=1000)
+    example3 = models.CharField(max_length=1000)
+    example4 = models.CharField(max_length=1000)
+    example5 = models.CharField(max_length=1000)
     corpus = models.ForeignKey(Corpus, null=False, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -48,9 +48,7 @@ class Batch(models.Model):
     )
     corpus = models.ForeignKey(Corpus, null=True, on_delete=models.SET_NULL)
     assignee = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
-    number_of_sentences = models.IntegerField(default=0)
     number_of_labeled_sentences = models.IntegerField(default=0)
-    percentage_labeled = models.IntegerField(default=0)
 
     def __str__(self):
         return f"{self.id}"
@@ -84,7 +82,6 @@ class Label(models.Model):
 
 class TestRun(models.Model):
     corpus = models.ForeignKey(Corpus, null=True, on_delete=models.SET_NULL)
-    number_of_example_sentences = models.IntegerField(default=0)
 
     def __str__(self):
         return f"{self.id}"

@@ -19,7 +19,7 @@
    <div class="col-sm-12 col-md-10 mb-1">
       <div class="card">
       <div class="card-header">
-          Satz {{ batch.number_of_labeled_sentences+1 }} von {{ batch.number_of_sentences }}
+          Satz {{ batch.number_of_labeled_sentences+1 }} von {{ batch.sentences.count() }}
       </div>
       <div class="card-body">
           <p class="card-text">"{{ sentence.text }}"</p>

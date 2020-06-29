@@ -1,49 +1,48 @@
 [
   {
-    "corpus": "Dune",
-    "number_of_example_sentences": 2,
+    "corpus": "Mittsommernachtstraum",
     "example_sentences":[
       {
-        "text": "Jessica ist Pauls Mutter.",
+        "text": "Lysander verzaubert Hermina.",
         "entities": [
           {
-            "id": 111,
-            "name": "Jessica",
+            "id": 100,
+            "name": "Lysander",
             "type": "Person"
           },
           {
-            "id": 222,
-            "name": "Pauls",
+            "id": 101,
+            "name": "Hermina",
             "type": "Person"
           }
         ],
         "gold_labels": [
           {
-            "goldentity1": 111,
-            "goldentity2": 222,
-            "goldrelation_type": "Mutter von"
+            "goldentity1": 100,
+            "goldentity2": 101,
+            "goldrelation_type": "verzaubert"
           }
         ]
       },
       {
-        "text": "Paul ist der Sohn von Leto.",
+        "text": "Helena verzaubert Demetrius.",
         "entities": [
           {
-            "id": 333,
-            "name": "Paul",
+            "id": 102,
+            "name": "Helena",
             "type": "Person"
           },
           {
-            "id": 444,
-            "name": "Leto",
+            "id": 103,
+            "name": "Demetrius",
             "type": "Person"
           }
         ],
         "gold_labels": [
           {
-            "goldentity1": 333,
-            "goldentity2": 444,
-            "goldrelation_type": ""
+            "goldentity1": 102,
+            "goldentity2": 103,
+            "goldrelation_type": "verzaubert"
           }
         ]
       }

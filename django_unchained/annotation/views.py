@@ -116,7 +116,6 @@ def sentence_view(request, batch_id):
                         print("INVALID FORM")
 
                 batch.number_of_labeled_sentences += 1
-                batch.percentage_labeled = (batch.number_of_labeled_sentences * 100) / batch.number_of_sentences
                 batch.save()
 
                 return redirect("sentence-view", batch_id=batch_id)
@@ -142,7 +141,7 @@ def sentence_view(request, batch_id):
 def testrun_view(request, testrun_id, iterator):
     testrun = TestRun.objects.get(id=testrun_id)
 
-    if iterator >= testrun.number_of_example_sentences:
+    if iterator >= testrun.examplesentence_set.count():
         return redirect("testrun-completed")
 
     else:
@@ -165,6 +164,7 @@ def testrun_view(request, testrun_id, iterator):
                 "entities": example_sentence.exampleentity_set.all(),
                 "formset": formset,
                 "iterator": iterator,
+                "testrun_size": testrun.examplesentence_set.count(),
                 "goldlabels": goldlabels
             },
         )

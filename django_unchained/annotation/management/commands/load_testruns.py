@@ -19,8 +19,7 @@ class Command(BaseCommand):
                 corpus = Corpus.objects.get(title=testrun["corpus"])
 
                 testrun_instance, testrun_created = TestRun.objects.get_or_create(
-                    corpus=corpus,
-                    number_of_example_sentences=testrun["number_of_example_sentences"]
+                    corpus=corpus
                 )
 
                 if testrun_created:
