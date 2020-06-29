@@ -18,9 +18,9 @@
         ],
         "gold_labels": [
           {
-            "goldentity1": 0,
-            "goldentity2": 1,
-            "goldrelation_type": "gehört an"
+            "gold_entity1": 0,
+            "gold_entity2": 1,
+            "gold_relation_type": "gehört an"
           }
         ]
       },
@@ -45,14 +45,14 @@
         ],
         "gold_labels": [
           {
-            "goldentity1": 2,
-            "goldentity2": 3,
-            "goldrelation_type": "gehört an"
+            "gold_entity1": 2,
+            "gold_entity2": 3,
+            "gold_relation_type": "gehört an"
           },
           {
-            "goldentity1": 3,
-            "goldentity2": 4,
-            "goldrelation_type": "Standort in"
+            "gold_entity1": 3,
+            "gold_entity2": 4,
+            "gold_relation_type": "Standort in"
           }
         ]
       },
@@ -72,9 +72,9 @@
         ],
         "gold_labels": [
           {
-            "goldentity1": 5,
-            "goldentity2": 6,
-            "goldrelation_type": ""
+            "gold_entity1": 5,
+            "gold_entity2": 6,
+            "gold_relation_type": ""
           }
         ]
       },
@@ -94,9 +94,9 @@
         ],
         "gold_labels": [
           {
-            "goldentity1": 7,
-            "goldentity2": 8,
-            "goldrelation_type": "zeichnet aus"
+            "gold_entity1": 7,
+            "gold_entity2": 8,
+            "gold_relation_type": "zeichnet aus"
           }
         ]
       },
@@ -126,19 +126,19 @@
         ],
         "gold_labels": [
           {
-            "goldentity1": 9,
-            "goldentity2": 10,
-            "goldrelation_type": "Zusammenarbeit mit"
+            "gold_entity1": 9,
+            "gold_entity2": 10,
+            "gold_relation_type": "Zusammenarbeit mit"
           },
           {
-            "goldentity1": 9,
-            "goldentity2": 11,
-            "goldrelation_type": "veröffentlicht in"
+            "gold_entity1": 9,
+            "gold_entity2": 11,
+            "gold_relation_type": "veröffentlicht in"
           },
           {
-            "goldentity1": 10,
-            "goldentity2": 11,
-            "goldrelation_type": "veröffentlicht in"
+            "gold_entity1": 10,
+            "gold_entity2": 11,
+            "gold_relation_type": "veröffentlicht in"
           }
         ]
       },
@@ -163,14 +163,14 @@
         ],
         "gold_labels": [
           {
-            "goldentity1": 13,
-            "goldentity2": 14,
-            "goldrelation_type": "Gründer:in von"
+            "gold_entity1": 13,
+            "gold_entity2": 14,
+            "gold_relation_type": "Gründer:in von"
           },
           {
-            "goldentity1": 32,
-            "goldentity2": 14,
-            "goldrelation_type": "Leiter:in von"
+            "gold_entity1": 32,
+            "gold_entity2": 14,
+            "gold_relation_type": "Leiter:in von"
           }
         ]
       },
@@ -195,9 +195,9 @@
         ],
         "gold_labels": [
           {
-            "goldentity1": 16,
-            "goldentity2": 17,
-            "goldrelation_type": "gehört an"
+            "gold_entity1": 16,
+            "gold_entity2": 17,
+            "gold_relation_type": "gehört an"
           }
         ]
       },
@@ -222,9 +222,9 @@
         ],
         "gold_labels": [
           {
-            "goldentity1": 18,
-            "goldentity2": 19,
-            "goldrelation_type": ""
+            "gold_entity1": 18,
+            "gold_entity2": 19,
+            "gold_relation_type": ""
           }
         ]
       },
@@ -249,14 +249,14 @@
         ],
         "gold_labels": [
           {
-            "goldentity1": 21,
-            "goldentity2": 24,
-            "goldrelation_type": "Standort in"
+            "gold_entity1": 21,
+            "gold_entity2": 24,
+            "gold_relation_type": "Standort in"
           },
           {
-            "goldentity1": 24,
-            "goldentity2": 23,
-            "goldrelation_type": "Teilort von"
+            "gold_entity1": 24,
+            "gold_entity2": 23,
+            "gold_relation_type": "Teilort von"
           }
         ]
       },
@@ -281,9 +281,9 @@
         ],
         "gold_labels": [
           {
-            "goldentity1": 25,
-            "goldentity2": 26,
-            "goldrelation_type": "nachgeordnete Organisation von"
+            "gold_entity1": 25,
+            "gold_entity2": 26,
+            "gold_relation_type": "nachgeordnete Organisation von"
           }
         ]
       },
@@ -303,9 +303,9 @@
         ],
         "gold_labels": [
           {
-            "goldentity1": 28,
-            "goldentity2": 29,
-            "goldrelation_type": ""
+            "gold_entity1": 28,
+            "gold_entity2": 29,
+            "gold_relation_type": ""
           }
         ]
       },
@@ -325,9 +325,9 @@
         ],
         "gold_labels": [
           {
-            "goldentity1": 30,
-            "goldentity2": 31,
-            "goldrelation_type": "Partnerorganisation von"
+            "gold_entity1": 30,
+            "gold_entity2": 31,
+            "gold_relation_type": "Partnerorganisation von"
           }
         ]
       }
