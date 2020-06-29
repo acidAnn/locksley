@@ -2,11 +2,6 @@
   {
     "title": "Wissenschaftsartikel",
     "tag_line": "Wissenschaftsmeldungen aus der österreichischen Tageszeitung Der Standard.",
-    "description": "Dieser Korpus besteht aus Artikeln der Wissenschaftsredaktion bei der österreichischen Tageszeitung Der Standard. Darin wird über bahnbrechende bis kuriose wissenschaftliche Entdeckungen und Forschungsfortschritte aus so unterschiedlichen Disziplinen wie der Raumfahrt, der Archäologie oder der Zoologie berichtet."
-  },
-  {
-    "title": "Mittsommernachtstraum",
-    "tag_line": "Sätze aus Shakespeares 'A Midsommer Night's Dream'.",
-    "description": "Süße Träume."
+    "description": "Dieser Korpus besteht aus Artikeln zu Wissenschaftsnachrichten, die aus der österreichischen Tageszeitung Der Standard stammen. Darin wird über bahnbrechende bis kuriose wissenschaftliche Entdeckungen und Forschungsfortschritte aus so unterschiedlichen Disziplinen wie der Raumfahrt, der Archäologie oder der Zoologie berichtet.\nEine Besonderheit gibt es bei den Sätzen zu beachten: Organisationen werden oft erst mit ihrem vollen Namen und dann ihrer Abkürzung in Klammern genannt z. B. 'Karlsruher Institut für Technologie (KIT)'. Im Normalfall sollten dann auch sowohl der volle Name als auch die Abkürzung separat als Entität markiert sein. Wenn eine andere Entität dann eine Beziehung zu dieser Organisation unterhält, dann sollte diese auch zweimal eingetragen werden, einmal mit der Version mit dem vollen Namen und einmal mit der Abkürzung. Bei dem Satz 'Holger Hanselka ist der Leiter des Karlsruher Instituts für Technologie (KIT).' mit den drei Entitäten Holger Hanselka, Karlsruher Instituts für Technologie und KIT etwa sollte eingetragen werden: Entität 1: Holger Hanselka, Entität 2: Karlsruher Insituts für Technologie, Relation: Leiter:in UND Entität 1: Holger Hanselka, Entität 2: KIT, Relation: Leiter:in."
   }
 ]
