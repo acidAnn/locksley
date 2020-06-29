@@ -1,0 +1,59 @@
+[
+  {
+    "corpus": "Wissenschaftsartikel",
+    "number_of_sentences": 5,
+    "sentences":[
+      {
+        "text": "Soden liegt nicht in Argentinien",
+        "entities": [
+          {
+            "id": 888,
+            "name": "Soden",
+            "type": "Ort"
+          },
+          {
+            "id": 999,
+            "name": "Argentinien",
+            "type": "Ort"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "corpus": "Wissenschaftsartikel",
+    "number_of_sentences": 5,
+    "sentences":[
+      {
+        "text": "Botsuana liegt in Afrika.",
+        "entities": [
+          {
+            "id": 455,
+            "name": "Botsuana",
+            "type": "Ort"
+          },
+          {
+            "id": 456,
+            "name": "Afrika",
+            "type": "Ort"
+          }
+        ]
+      },
+      {
+        "text": "Madagaskar ist vor der Küst von Mosambik gelegen.",
+        "entities": [
+          {
+            "id": 457,
+            "name": "Madagaskar",
+            "type": "Ort"
+          },
+          {
+            "id": 458,
+            "name": "Mosambik",
+            "type": "Ort"
+          }
+        ]
+      }
+    ]
+  }
+]

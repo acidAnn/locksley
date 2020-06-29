@@ -53,7 +53,7 @@ class Batch(models.Model):
     percentage_labeled = models.IntegerField(default=0)
 
     def __str__(self):
-        return f"{self.id} - {self.corpus.title} - {self.assignee.username}"
+        return f"{self.id}"
 
 
 class Membership(models.Model):
@@ -87,7 +87,7 @@ class TestRun(models.Model):
     number_of_example_sentences = models.IntegerField(default=0)
 
     def __str__(self):
-        return f"{self.id} - {self.corpus.tag_line}"
+        return f"{self.id}"
 
 
 class ExampleSentence(models.Model):
