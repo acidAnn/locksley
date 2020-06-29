@@ -1,2 +1,17 @@
 # django-unchained
-Unchain the Django!
+An annotation tool for relation extraction.
+
+## How to load annotation data into the database
+You can do so by using the scripts in the `django-unchained/annotation/management/commands` directory.
+First, you need to add the `data` directory as a volume to the annotation service in your docker-compose file.
+Afterwards, you can execute the scripts as follows:
+```
+$ docker-compose run annotation [name_of_the_script]
+```
+
+Please note that the order in which the different types of data points are loaded matters:
+1. load_corpora.py
+2. load_relation_types.py
+3. load_testruns.py
+4. load_sentences.py
+5. load_batches.py
