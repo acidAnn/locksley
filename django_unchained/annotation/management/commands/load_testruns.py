@@ -44,17 +44,17 @@ class Command(BaseCommand):
                         entity_instance.save()
 
                     for gold_label in example_sentence["gold_labels"]:
-                        if gold_label["goldrelation_type"]:
+                        if gold_label["gold_relation_type"]:
                             try:
-                                goldentity1 = ExampleEntity.objects.get(id=gold_label["goldentity1"])
-                                goldentity2 = ExampleEntity.objects.get(id=gold_label["goldentity2"])
-                                goldrelation_type = RelationType.objects.get(name=gold_label["goldrelation_type"])
+                                gold_entity1 = ExampleEntity.objects.get(id=gold_label["gold_entity1"])
+                                gold_entity2 = ExampleEntity.objects.get(id=gold_label["gold_entity2"])
+                                gold_relation_type = RelationType.objects.get(name=gold_label["gold_relation_type"])
 
                                 gold_label_instance, gold_label_created = GoldLabel.objects.get_or_create(
                                     example_sentence=example_sentence_instance,
-                                    goldentity1=goldentity1,
-                                    goldentity2=goldentity2,
-                                    goldrelation_type=goldrelation_type,
+                                    gold_entity1=gold_entity1,
+                                    gold_entity2=gold_entity2,
+                                    gold_relation_type=gold_relation_type,
                                 )
 
                                 if gold_label_created:
@@ -63,12 +63,11 @@ class Command(BaseCommand):
                                     self.stdout.write(f'"{gold_label_instance}"')
 
                             except ObjectDoesNotExist:
-                                self.stdout.write(self.style.ERROR(f"gold entities {goldentity1} or {goldentity2} or relation type {goldrelation_type} does not exist"))
+                                self.stdout.write(self.style.ERROR(f"gold entities {gold_entity1} or {gold_entity2} or relation type {gold_relation_type} does not exist"))
 
                         else:
                             gold_label_instance = GoldLabel(example_sentence=example_sentence_instance)
                             gold_label_instance.save()
-                            print("done")
 
             except ObjectDoesNotExist:
                 self.stdout.write(self.style.ERROR(f"no corpus {corpus} found"))
