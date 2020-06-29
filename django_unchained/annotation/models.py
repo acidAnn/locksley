@@ -1,3 +1,5 @@
+import uuid
+
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -48,6 +50,7 @@ class Batch(models.Model):
     )
     corpus = models.ForeignKey(Corpus, null=True, on_delete=models.SET_NULL)
     assignee = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    group = models.CharField(default="", max_length=500)
     number_of_labeled_sentences = models.IntegerField(default=0)
 
     def __str__(self):
@@ -107,13 +110,13 @@ class ExampleEntity(models.Model):
 
 class GoldLabel(models.Model):
     example_sentence = models.ForeignKey(ExampleSentence, null=False, on_delete=models.CASCADE)
-    goldentity1 = models.ForeignKey(
-        ExampleEntity, null=True, on_delete=models.PROTECT, related_name="goldentity1"
+    gold_entity1 = models.ForeignKey(
+        ExampleEntity, null=True, on_delete=models.PROTECT, related_name="gold_entity1"
     )
-    goldentity2 = models.ForeignKey(
-        ExampleEntity, null=True, on_delete=models.PROTECT, related_name="goldentity2"
+    gold_entity2 = models.ForeignKey(
+        ExampleEntity, null=True, on_delete=models.PROTECT, related_name="gold_entity2"
     )
-    goldrelation_type = models.ForeignKey(
+    gold_relation_type = models.ForeignKey(
         RelationType, null=True, on_delete=models.PROTECT
     )
 
