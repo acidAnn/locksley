@@ -9,14 +9,14 @@
 
 <div class="row justify-content-center">
     <div class="col-sm-12 col-md-10 pt-2">
-        <h2>Beschreibung</h2>
+        <h2>Herkunft und Eigenschaften</h2>
             <p>{{ corpus.description }}</p>
     </div>
 </div>
 
 <div class="row justify-content-center">
     <div class="col-sm-12 col-md-10 pt-2">
-        <h2>Relationstypen</h2>
+        <h2>Betrachtete Arten von Relationen</h2>
         {% if relation_types %}
         <table class="table">
           <thead class="thead-light">
@@ -30,8 +30,8 @@
               {% for relation_type in relation_types %}
                   <tr>
                     <th scope="row">{{ relation_type.name }}</th>
-                    <th>{{ relation_type.description }}</th>
-                    <th>
+                    <td>{{ relation_type.description }}</td>
+                    <td>
                         <ul>
                         <li>{{ relation_type.example1 }}</li>
                         <li>{{ relation_type.example2 }}</li>
@@ -39,7 +39,7 @@
                         <li>{{ relation_type.example4 }}</li>
                         <li>{{ relation_type.example5 }}</li>
                         </ul>
-                    </th>
+                    </td>
                    </tr>
               {% endfor %}
           </tbody>
