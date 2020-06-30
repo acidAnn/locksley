@@ -38,7 +38,7 @@ class LabelForm(forms.ModelForm):
 
     class Meta:
         model = Label
-        fields = ["entity1", "entity2", "relation_type"]
+        fields = ["entity1", "relation_type", "entity2"]
 
 
 class TestRunLabelForm(forms.ModelForm):
@@ -63,7 +63,7 @@ class TestRunLabelForm(forms.ModelForm):
 
     class Meta:
         model = Label
-        fields = ["entity1", "entity2", "relation_type"]
+        fields = ["entity1", "relation_type", "entity2"]
 
 
 LabelFormSet = forms.formset_factory(
