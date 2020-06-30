@@ -1,4 +1,4 @@
-# django-unchained
+# Locksley 
 A web-based annotation tool for relation extraction.
 
 ## Annotation data
