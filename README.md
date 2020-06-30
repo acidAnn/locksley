@@ -2,7 +2,7 @@
 A web-based annotation tool for relation extraction.
 
 ## Annotation data
-The sentences in the `data` folder are all part of the 10kGNAD corpus that is released under a Creative Commons BY-NC-SA 4.0 license (www.github.com/tblock/10kGNAD). As a result, the sentences here are equally made available under CC BY-NC-SA 4.0. 
+The sentences in the `data` folder are all part of the 10kGNAD corpus that is released under a Creative Commons BY-NC-SA 4.0 license (www.github.com/tblock/10kGNAD). As a result, the sentences here are equally made available under CC BY-NC-SA 4.0 (https://www.creativecommons.org/licenses/by-nc-sa/4.0/). 
 
 ## How to load annotation data into the database
 You can do so by using the scripts in the `django-unchained/annotation/management/commands` directory.
