@@ -52,7 +52,7 @@
        <ul>
           {% for goldlabel in goldlabels %}
           {% if not goldlabel.gold_relation_type %}
-          <li>Keine Relation enthalten. Subjekt: ---------, Objekt: ---------, Relationstyp: ---------</li>
+          <li>Keine Relation enthalten. Subjekt: ---------, Objekt: ---------, Relation: ---------</li>
           {% else %}
           <li>Entität 1: {{ goldlabel.gold_entity1 }}, Entität 2: {{ goldlabel.gold_entity2 }}, Relationstyp: {{ goldlabel.gold_relation_type }}</li>
           {% endif %}
