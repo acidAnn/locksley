@@ -1,4 +1,4 @@
-# Locksley 
+# Locksley :bow_and_arrow:
 A web-based annotation tool for relation extraction.
 
 ## Deployment with docker
