@@ -1,3 +1,8 @@
+"""Module for registering all models in the admin interface to the database.
+
+This allows to add, modify and delete instances of these models via the admin interface.
+"""
+
 from django.contrib import admin
 from .models import (
     Corpus,

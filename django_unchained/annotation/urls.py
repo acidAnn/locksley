@@ -1,3 +1,5 @@
+"""Module for assigning a url to every view."""
+
 from django.urls import path, include
 from . import views
 

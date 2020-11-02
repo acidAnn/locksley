@@ -1,3 +1,9 @@
+"""Module for exporting all Label objects from the database into a json file.
+
+Classes:
+Command
+"""
+
 import json
 
 from django.core.management.base import BaseCommand
@@ -5,6 +11,7 @@ from annotation.models import Label
 
 
 class Command(BaseCommand):
+    """A command to export all Label objects from the database."""
     help = "Export labels."
 
     def handle(self, *args, **options):
@@ -14,7 +21,10 @@ class Command(BaseCommand):
 
         for label in Label.objects.all():
             # label.entity1 and label.entity1 can be None
-            entities = {"entity1": {"id": "", "name": "", "type": ""}, "entity2": {"id": "", "name": "", "type": ""}}
+            entities = {
+                "entity1": {"id": "", "name": "", "type": ""},
+                "entity2": {"id": "", "name": "", "type": ""},
+            }
 
             if label.entity1:
                 entities["entity1"]["id"] = label.entity1.id
@@ -32,20 +42,17 @@ class Command(BaseCommand):
             else:
                 relation_type = ""
 
-            label_list.append({
-                "id": label.id,
-                "user": label.user.username,
-                "sentence": {
-                    "id": label.sentence.id,
-                    "text": label.sentence.text
-                },
-                "entities": entities,
-                "relation_type": relation_type
-            })
+            label_list.append(
+                {
+                    "id": label.id,
+                    "user": label.user.username,
+                    "sentence": {"id": label.sentence.id, "text": label.sentence.text},
+                    "entities": entities,
+                    "relation_type": relation_type,
+                }
+            )
 
         with open("/data/exported_labels.json", mode="w", encoding="utf8") as f:
             json.dump(label_list, f, ensure_ascii=False, indent=2)
 
-        self.stdout.write(
-            f"{label_count} labels exported"
-        )
+        self.stdout.write(f"{label_count} labels exported")

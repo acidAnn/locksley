@@ -1,10 +1,18 @@
+"""A module for loading a corpus specification from a json file and saving it in a Corpus object in the database.
+
+classes:
+Command
+"""
+
 import json
 
-from django.core.management.base import BaseCommand, CommandError
 from annotation.models import Corpus
+from django.core.management.base import BaseCommand
 
 
 class Command(BaseCommand):
+    """A command for loading Corpus objects into the database."""
+
     help = "Load corpora."
 
     def handle(self, *args, **options):

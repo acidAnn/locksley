@@ -1,11 +1,19 @@
+"""Module for loading a relation from a json file and saving it in as RelationType object in the database.
+
+Classes:
+Command
+"""
+
 import json
 
-from django.core.exceptions import ObjectDoesNotExist
-from django.core.management.base import BaseCommand, CommandError
 from annotation.models import Corpus, RelationType
+from django.core.exceptions import ObjectDoesNotExist
+from django.core.management.base import BaseCommand
 
 
 class Command(BaseCommand):
+    """A command for loading RelationType objects into the database."""
+
     help = "Load relation types."
 
     def handle(self, *args, **options):
@@ -35,7 +43,9 @@ class Command(BaseCommand):
                     self.stdout.write(f'"{relation_type_instance}"')
 
             except ObjectDoesNotExist:
-                self.stdout.write(self.style.ERROR(f"no corpus {corpus} found"))
+                self.stdout.write(
+                    self.style.ERROR(f"no corpus {relation_type['corpus']} found")
+                )
                 continue
 
         self.stdout.write(
