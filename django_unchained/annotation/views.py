@@ -54,7 +54,7 @@ def corpus_instructions(request, corpus_id):
     relation_types = RelationType.objects.filter(corpus=corpus_id)
     return render(
         request,
-        "annotation/corpus-instructions.jinja2",
+        "annotation/corpus_instructions.jinja2",
         {"corpus": corpus, "relation_types": relation_types},
     )
 
