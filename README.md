@@ -1,5 +1,9 @@
 # Locksley :bow_and_arrow:
-A web-based annotation tool for relation extraction.
+A minimalist web-based annotation tool for relation extraction. The interface is in German.
+
+![workbench](screenshots/workbench.png)
+
+![annotation interface](screenshots/annotation.png)
 
 ## Deployment with docker
 The web interface is deployed with the help of Docker and docker compose. Before using this repo, make sure both are installed.
